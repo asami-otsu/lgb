@@ -3,9 +3,9 @@
 class Mains extends LGB_Controller {
 
 	public function main1(){
-		$this->view_name ="main1";
+		$this->setViewName("main1");
+		$this->setData(array());
 		$this->loadView();
-//		$this->load->view('Mains/main1');
 	}
 }
 
