@@ -1023,7 +1023,6 @@ class CI_Loader {
 			{
 				continue;
 			}
-
 			include_once($filepath);
 			return $this->_ci_init_library($class, '', $params, $object_name);
 		}
