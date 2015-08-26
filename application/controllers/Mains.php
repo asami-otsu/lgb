@@ -1,11 +1,15 @@
 <?php
 
 class Mains extends LGB_Controller {
+	
+	public function __construct(){
+		parent::__construct();
+	}
 
-	public function main1(){
-		$this->view_name ="main1";
+	public function index(){
+		$this->setViewName("index");
+		$this->setData(array());
 		$this->loadView();
-//		$this->load->view('Mains/main1');
 	}
 }
 
