@@ -1,7 +1,7 @@
 <?php
 
-echo "Mains/index";
-echo PHP_VERSION;
+echo "Mains/index<BR>";
+echo "php ver = ".PHP_VERSION."<BR>";
 
 ?>
 
@@ -22,11 +22,11 @@ echo PHP_VERSION;
 	document.write("xmlHttp readyState="+ xmlHttp.readyState);
 	document.write("<BR>xmlHttp status="+ xmlHttp.status);
 	*/
-	
+	alert(lgb_common);
 	var ajax_data = null;
 	$.ajax({
 		type: "GET",
-		url: "http://192.168.56.10/index.php/Api/get",
+		url: lgb_common.api_url,
 		cache: false,
 		dataType: "json",
 		success: function(data, dataType){

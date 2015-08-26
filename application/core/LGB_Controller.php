@@ -11,6 +11,7 @@ class LGB_Controller extends CI_Controller{
 		// load header
 		$data = array(
 			'controller_name' => get_class($this),
+			'lib_js_path' => APPPATH."js/common.js",
 			);
 		/* $data にヘッダー用のデータをつっこんだのち、表示 */
 		$this->load->view('template/header.php', $data);

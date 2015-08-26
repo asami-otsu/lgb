@@ -1,0 +1,5 @@
+/logs
+/var
+*.swp
+*.swo
+/.bak
