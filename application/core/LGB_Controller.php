@@ -9,10 +9,18 @@ class LGB_Controller extends CI_Controller{
 	function __construct(){
 		parent::__construct();
 		// load header
+		$data = array(
+			'controller_name' => get_class($this),
+			);
+		/* $data にヘッダー用のデータをつっこんだのち、表示 */
+		$this->load->view('template/header.php', $data);
 	}
 
 	function __destruct(){
 		// load footer
+		$data = array();
+		/* $data にフッター用のデータをつっこんだのち、表示 */
+		$this->load->view('template/footer.php', $data);
 	}
 
 	protected function loadView( $filepath = null ){
