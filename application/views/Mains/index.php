@@ -22,7 +22,7 @@ echo "php ver = ".PHP_VERSION."<BR>";
 	document.write("xmlHttp readyState="+ xmlHttp.readyState);
 	document.write("<BR>xmlHttp status="+ xmlHttp.status);
 	*/
-	alert(lgb_common);
+	/*
 	var ajax_data = null;
 	$.ajax({
 		type: "GET",
@@ -38,4 +38,6 @@ echo "php ver = ".PHP_VERSION."<BR>";
 			},
 		data: "Dataaa"
 		});
+	*/
+	lgb_ajax();
 </script>

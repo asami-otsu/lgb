@@ -8,5 +8,3 @@
 </head>
 
 <body>
- <? echo "controller name " . $controller_name ?>
- <? echo "lib js path " . $lib_js_path ?>
