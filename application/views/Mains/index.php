@@ -9,19 +9,6 @@ echo "php ver = ".PHP_VERSION."<BR>";
 
 <script type="text/javascript">
 	
-	var text = "Text2<BR>";
-
-	document.write(text);
-	
-	/*
-	var xmlHttp = new XMLHttpRequest();
-	xmlHttp.open('POST', "http://192.168.56.10/index.php/Api/get", true);
-	xmlHttp.send([]);
-
-	setTimeout(function(){}, 3000 );
-	document.write("xmlHttp readyState="+ xmlHttp.readyState);
-	document.write("<BR>xmlHttp status="+ xmlHttp.status);
-	*/
 	/*
 	var ajax_data = null;
 	$.ajax({
@@ -39,5 +26,20 @@ echo "php ver = ".PHP_VERSION."<BR>";
 		data: "Dataaa"
 		});
 	*/
-	lgb_ajax();
+
+	$.get(
+		lgb_common.api_url,
+		function(){
+			console.log("$.get callback");
+		},
+		{}
+	);
+
+	var _data = null;
+	lgb_ajax(function(data){
+		// データを受け取た場合の処理
+		_data = data;
+		console.log("async "+data);
+	});
+	console.log(_data);
 </script>
