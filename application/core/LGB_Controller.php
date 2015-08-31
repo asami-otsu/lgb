@@ -10,8 +10,11 @@ class LGB_Controller extends CI_Controller{
 		parent::__construct();
 		// load header
 		$data = array(
+			'favicon_path' => '/application/favicon.ico',
 			'controller_name' => get_class($this),
-			'lib_js_path' => "/application/js/common.js",
+			'lib_js_path' => '/application/js/common.js',
+			'main_js_path' => '/application/js/main.js',
+			'common_css_path' => '/application/css/common.css',
 			);
 		/* $data にヘッダー用のデータをつっこんだのち、表示 */
 		$this->load->view('template/header.php', $data);

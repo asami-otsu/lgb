@@ -5,10 +5,13 @@ echo "php ver = ".PHP_VERSION."<BR>";
 
 ?>
 
-
+<canvas id="main" width="400" height="300"></canvas>
 
 <script type="text/javascript">
 	
+	// 初期化
+//	canvas = document.getElementById('canvas');
+
 	/*
 	var ajax_data = null;
 	$.ajax({
@@ -26,7 +29,7 @@ echo "php ver = ".PHP_VERSION."<BR>";
 		data: "Dataaa"
 		});
 	*/
-
+/*
 	$.get(
 		lgb_common.api_url,
 		function(){
@@ -42,4 +45,5 @@ echo "php ver = ".PHP_VERSION."<BR>";
 		console.log("async "+data);
 	});
 	console.log(_data);
+	*/
 </script>

@@ -1,14 +1,19 @@
 
 /* js 呼び出し元設定資料 */
 
-var lgb_common = {
+var lgb = {};
+// ** test **
+// lgb.test_string = "test_string";
+// console.log(lgb.test_string);
+
+lgb.common = {
 	api_url: "http://192.168.56.10/index.php/Api/get"
 };
 
 // コールバック関数で処理
-var lgb_ajax = function (callback, url){
-	var url = url || lgb_common.api_url;
-	var params = [];
+lgb.ajax = function (callback, params, url){
+	var url = url || lgb.common.api_url;
+	var params = params || [];
 
 	var res = $.ajax({
 		type: "GET",
@@ -27,4 +32,8 @@ var lgb_ajax = function (callback, url){
 
 	return res;
 };
+
+lgb.js_urls = [
+	'/application/js/button.js'
+];
 
