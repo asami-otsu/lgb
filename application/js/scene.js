@@ -4,8 +4,9 @@
  *
  *
  */
-lgb.scene = function (nowType, buttons){
+lgb.scene = function (nowType, nowTitle, buttons){
 	this.type = nowType;
+	this.title = nowTitle;
 	this.buttonManager = null;
 	this.buttons = buttons || null;
 
