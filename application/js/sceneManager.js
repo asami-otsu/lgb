@@ -14,18 +14,19 @@ lgb.sceneManager = function(){
 	this.scene = null;
 	this.remove = false;
 	this.nonProcess = false;
+	this.sceneList = null;
 
 	this.init = function(){
 		this.remove = false;
 		// サーバーからデータ取得
-		this.buttons = $.ajax({
+		var scenes = $.ajax({
 				url: lgb.common.api_url, 
 				data: null, 
 				success: null, 
 				dataType: "json",
 				async: false
 			});
-		this.buttons = JSON.parse(this.buttons.responseText);
+		this.sceneList = JSON.parse(scenes.responseText);
 
 		this.createScene();
 	};
@@ -72,7 +73,9 @@ lgb.sceneManager = function(){
 	};
 
 	this.createScene = function(){
-		this.scene = new lgb.scene(this.nowType, eval("this.buttons."+this.nowType) );
+		var nowScene = eval('this.sceneList.'+this.nowType);
+console.log(nowScene);
+		this.scene = new lgb.scene(this.nowType, nowScene.sceneName, nowScene.buttons );
 		console.log('createScene is type='+this.nowType+ ': '+this.scene.getType());
 		this.scene.init();
 		this.nonProcess = false;

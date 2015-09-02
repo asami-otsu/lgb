@@ -18,16 +18,14 @@ class Api extends CI_Controller {
 	public function getButtons(){
 		$a = array(
 			'sceneType' => array(
-				array(
-					'sceneName' => "hogehoge",
-					'buttons' => array(
-						array(
-							'x' => 1,
-							'y' => 1,
-							'params' => array(
-								"text" => "hoge",
-								"nextScene" => "fuga",
-							),
+				'sceneName' => "hogehoge",
+				'buttons' => array(
+					array(
+						'x' => 1,
+						'y' => 1,
+						'params' => array(
+							"text" => "hoge",
+							"nextScene" => "fuga",
 						),
 					),
 				),
@@ -35,39 +33,35 @@ class Api extends CI_Controller {
 		);
 		$data = array(
 			'menu' => array(
-				array(
-					'sceneName' => 'hogetitle',
-					'buttons' => array(
-						array(
-							'x' => 1,
-							'y' => 1,
-							'params' => array(
-								'text' => 'hoge',
-								'nextScene' => 'main',
-							),
+				'sceneName' => 'hogetitle',
+				'buttons' => array(
+					array(
+						'x' => 1,
+						'y' => 1,
+						'params' => array(
+							'text' => 'hoge',
+							'nextScene' => 'main',
 						),
-						array(
-							'x' => 1,
-							'y' => 40,
-							'params' => array(
-								'text' => 'fuga',
-								'nextScene' => 'main',
-							),
+					),
+					array(
+						'x' => 1,
+						'y' => 40,
+						'params' => array(
+							'text' => 'fuga',
+							'nextScene' => 'main',
 						),
 					),
 				),
 			),
 			'main' => array(
-				array(
-					'sceneName' => 'fugatitle',
-					'buttons' => array(
-						array(
-							'x' => 1,
-							'y' => 30,
-							'params' => array(
-								'text' => 'fuga',
-								'nextScene' => 'menu',
-							),
+				'sceneName' => 'fugatitle',
+				'buttons' => array(
+					array(
+						'x' => 1,
+						'y' => 30,
+						'params' => array(
+							'text' => 'fuga',
+							'nextScene' => 'menu',
 						),
 					),
 				),
