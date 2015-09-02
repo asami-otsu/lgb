@@ -1,0 +1,11 @@
+
+canvas#main{
+	width: 400px;
+	height: 300px;
+}
+
+.button_one {
+    	padding: 20px;
+    	border: #ff7f92 dashed 1px;
+	background: #fff;
+}
