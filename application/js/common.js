@@ -34,6 +34,19 @@ lgb.ajax = function (callback, params, url){
 };
 
 lgb.js_urls = [
-	'/application/js/button.js'
+	'/application/js/button.js',
+	'/application/js/buttonManager.js',
+	'/application/js/scene.js',
+	'/application/js/sceneManager.js'
 ];
+
+// ctx の文字等の表示周り初期化
+lgb.ctx_init = function(ctx){
+	if( ! ctx ){
+		// ctx がない
+		console.log('ctx non object');
+		return ;
+	}
+	ctx.strokeStyle = '#000000';
+};
 

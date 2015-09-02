@@ -5,7 +5,7 @@ echo "php ver = ".PHP_VERSION."<BR>";
 
 ?>
 
-<canvas id="main" width="400" height="300"></canvas>
+<canvas id="main" width="400" height="300" style="background-color: #0f0"></canvas>
 
 <script type="text/javascript">
 	
