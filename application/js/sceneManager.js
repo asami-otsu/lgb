@@ -26,6 +26,7 @@ lgb.sceneManager = function(){
 				async: false
 			});
 		this.buttons = JSON.parse(this.buttons.responseText);
+
 		this.createScene();
 	};
 
