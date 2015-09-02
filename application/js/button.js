@@ -26,9 +26,20 @@ lgb.button = function(x, y, params){
 		this.c_rect = $(this.canvas).offset();
 
 		// addEventListener
+		this.canvas.lgb_button = this;
 		this.canvas.addEventListener('mouseover', this.onOver, false);
 		this.canvas.addEventListener('click', this.onClick, false);
 		this.canvas.addEventListener('mouseout', this.onOut, false);
+	};
+
+	this.update = function(){
+		// ctx init
+		lgb.ctx_init(this.ctx);
+
+		if( this.isOverMouse ){
+			this.ctx.fillStyle = "#ff0000";
+			this.ctx.strokeStyle = '#ff0000';
+		}
 	};
 
 	this.draw = function(x, y, text){
@@ -36,39 +47,31 @@ lgb.button = function(x, y, params){
 		var y = y || this.position_y;
 		var text = text || this.text;
 
-		// ctx init
-		lgb.ctx_init(this.ctx);
 
 		// 描画
 		this.ctx.fillText(this.text, 0, 0);
-
-		if( this.isOverMouse ){
-			this.ctx.strokeStyle = '#ff0000';
-		}
 		this.ctx.strokeRect(0, 0, this.size_x, this.size_y);
 	};
 
 	this.finish = function(){
-console.log(this.text + " is finish");
-		$(this.text).remove();
+		$('#'+this.text).remove();
 	};
 
 	this.drawDisable = function(){
 	};
 
 	this.onClick = function(e){
-console.log(this.text + " onClick");
 		// すでにのっている状態
+		console.log(this.lgb_button.text + " onClick");
+		lgb.app.nextScene();
 	};
 
 	this.onOver = function(e){
-console.log(this.text + " onOver");
-		this.isOverMouse = true;
+		this.lgb_button.isOverMouse = true;
 	};
-	
+
 	this.onOut = function(e){
-console.log(this.text + " onOut");
-		this.isOverMouse = false;
+		this.lgb_button.isOverMouse = false;
 	};
 
 	this.isCollision = function(m_x, m_y){
@@ -78,6 +81,6 @@ console.log(this.text + " onOut");
 	};
 
 	// canvasに自分要素用のcanvas作成
-	$(canvas).append("<canvas id='"+this.text+"' width='"+this.size_x+"' height='"+this.size_y+"' style='background-color: #ff00ff' ></canvas>");
+	$('#canvas').append("<canvas id='"+this.text+"' width='"+this.size_x+"' height='"+this.size_y+"' style='background-color: #30a077; left:"+this.position_x+"px; top:"+this.position_y+"px' ></canvas>");
 };
 

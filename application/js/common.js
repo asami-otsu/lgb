@@ -7,7 +7,7 @@ var lgb = {};
 // console.log(lgb.test_string);
 
 lgb.common = {
-	api_url: "http://192.168.56.10/index.php/Api/get"
+	api_url: "http://192.168.56.10/index.php/Api/getButtons"
 };
 
 // コールバック関数で処理
@@ -48,5 +48,6 @@ lgb.ctx_init = function(ctx){
 		return ;
 	}
 	ctx.strokeStyle = '#000000';
+	ctx.fillStyle = '#000000';
 };
 

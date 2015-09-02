@@ -1,7 +1,9 @@
 
+canvas{
+	position: absolute;
+}
 canvas#main{
-	width: 400px;
-	height: 300px;
+	position: relative;
 }
 
 .button_one {
@@ -9,3 +11,4 @@ canvas#main{
     	border: #ff7f92 dashed 1px;
 	background: #fff;
 }
+
