@@ -32,23 +32,23 @@ onload = function (){
 		console.log('event func x/y' + e.clientX + '/' + e.clientY);
 	});
 
-	var sceneManager = null;
+	lgb.app = null;
 
 	lgb.main = function(){
-		if( sceneManager == null ){
-			sceneManager = new lgb.sceneManager();
-			sceneManager.init();
+		if( lgb.app == null ){
+			lgb.app = new lgb.sceneManager();
+			lgb.app.init();
 		}
 
-		if( sceneManager.isRemove() == false ){
+		if( lgb.app.isRemove() == false ){
 			// 更新処理
-			sceneManager.update();
+			lgb.app.update();
 			// 一定間隔でいる？
-			sceneManager.draw();
+			lgb.app.draw();
 			
-			setTimeout('lgb.main()', 1000);
+			setTimeout('lgb.main()', 33);
 		}else{
-			sceneManager.finish();
+			lgb.app.finish();
 		}
 	};
 	

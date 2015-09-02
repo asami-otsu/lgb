@@ -16,11 +16,23 @@ lgb.buttonManager = function(buttons){
 			i.init();
 		}
 	};
+	this.update = function(){
+		for( var i of this.buttonList ){
+			i.update();
+		}
+	};
 
 	this.draw = function(){
 		for( var i of this.buttonList ){
 			i.drawDisable();
 			i.draw();
+		}
+	};
+
+	this.finish = function(){
+		for( var i of this.buttonList ){
+			i.finish();
+			delete i;
 		}
 	};
 

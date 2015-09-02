@@ -4,16 +4,18 @@
  *
  *
  */
-lgb.scene = function (nowType){
-	this.type = nowType || 'menu';
+lgb.scene = function (nowType, buttons){
+	this.type = nowType;
 	this.buttonManager = null;
-	
+	this.buttons = buttons || null;
+
 	this.init = function(){
+		this.buttonManager = new lgb.buttonManager(this.buttons);
 		this.buttonManager.init();
 	};
 
 	this.update = function(){
-
+		this.buttonManager.update();
 	};
 
 	this.draw = function(){
@@ -22,12 +24,12 @@ lgb.scene = function (nowType){
 	};
 
 	this.finish = function(){
-
+		this.buttonManager.finish();
+		delete this.buttonManager;
 	};
 
-	this.buttonManager = new lgb.buttonManager([
-		{params:{text:'hoge'}, x:1, y:1},
-		{params:{text:'fuga'}, x:1, y:50}
-	]);
+	this.getType = function(){
+		return this.type;
+	};
 };
 
