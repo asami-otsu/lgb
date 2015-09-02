@@ -54,9 +54,10 @@ lgb.sceneManager = function(){
 	this.isRemove = function(){
 		return this.remove;
 	};
-	
+
+	// もういらないかも。。
 	this.nextScene = function(){
-		this.nowType = lgb.sceneTypeList.MAIN;
+		this.nowType = this.nowType;
 	};
 
 	this.setSceneType = function(type){

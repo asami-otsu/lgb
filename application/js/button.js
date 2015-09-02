@@ -17,6 +17,8 @@ lgb.button = function(x, y, params){
 	this.ctx = null;
 	this.c_rect = null;
 
+	this.nextScene = params.nextScene;
+
 	this.init = function(){
 		this.canvas = $('#'+this.text).get(0);
 		if( this.canvas.getContext ){
@@ -62,8 +64,7 @@ lgb.button = function(x, y, params){
 
 	this.onClick = function(e){
 		// すでにのっている状態
-		console.log(this.lgb_button.text + " onClick");
-		lgb.app.nextScene();
+		lgb.app.setSceneType(this.lgb_button.nextScene);
 	};
 
 	this.onOver = function(e){
