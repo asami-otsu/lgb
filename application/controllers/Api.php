@@ -16,7 +16,7 @@ class Api extends CI_Controller {
 	}
 
 	public function getButtons(){
-		$a = array(
+		$sample = array(
 			'sceneType' => array(
 				'sceneName' => "hogehoge",
 				'buttons' => array(
@@ -32,34 +32,37 @@ class Api extends CI_Controller {
 			),
 		);
 		$data = array(
-			'menu' => array(
-				'sceneName' => 'hogetitle',
+			'scene_menu' => array(
+				'sceneName' => 'メニュー',
 				'buttons' => array(
 					array(
 						'x' => 1,
-						'y' => 1,
+						'y' => 35,
 						'params' => array(
+							'id' => 'button_hoge',
 							'text' => 'hoge',
 							'nextScene' => 'main',
 						),
 					),
 					array(
 						'x' => 1,
-						'y' => 40,
+						'y' => 70,
 						'params' => array(
+							'id' => 'button_fuga',
 							'text' => 'fuga',
 							'nextScene' => 'main',
 						),
 					),
 				),
 			),
-			'main' => array(
-				'sceneName' => 'fugatitle',
+			'scene_main' => array(
+				'sceneName' => 'メイン',
 				'buttons' => array(
 					array(
 						'x' => 1,
 						'y' => 30,
 						'params' => array(
+							'id' => 'button_fuga',
 							'text' => 'fuga',
 							'nextScene' => 'menu',
 						),
@@ -72,3 +75,4 @@ class Api extends CI_Controller {
 		exit;
 	}
 }
+
