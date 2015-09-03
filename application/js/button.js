@@ -20,6 +20,8 @@ lgb.button = function(x, y, params){
 
 	this.nextScene = params.nextScene;
 
+	this.actionType = params.actionType || "none";
+
 	this.init = function(){
 		this.canvas = $('#'+this.id).get(0);
 		if( this.canvas.getContext ){
@@ -65,6 +67,9 @@ lgb.button = function(x, y, params){
 
 	this.onClick = function(e){
 		// すでにのっている状態
+		if( this.lgb_button.actionType == "quest_select" ){
+			lgb.user.data.select_quest.quest_id = 1;
+		}
 		lgb.app.setSceneType(this.lgb_button.nextScene);
 	};
 

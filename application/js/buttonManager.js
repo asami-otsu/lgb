@@ -3,11 +3,15 @@
  * ボタン管理者オブジェクト
  * @param array buttons ボタン情報一覧
  */
-lgb.buttonManager = function(buttons){
+lgb.buttonManager = function(buttons, drawType, actionType){
 	this.buttonsData = buttons || [];
 	this.buttonList = [];
 
+	this.drawType = drawType || "none";
+	this.actionType = actionType || "none";
+
 	for ( var b of this.buttonsData ){
+		b.params.actionType = this.actionType;
 		this.buttonList.push( new lgb.button(b.x, b.y, b.params) );
 	}	
 
