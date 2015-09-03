@@ -6,9 +6,10 @@
  * @param object params
  */
 lgb.button = function(x, y, params){
-	this.position_x = x || 0;
+	this.position_x = x || 0;	// このオブジェクト自身の座標
 	this.position_y = y || 0;
 	this.text = params.text || "NoneText";
+	this.id = params.id || this.text;
 	this.size_x = params.size_x || 400;
 	this.size_y = params.size_y || 30;
 	this.inOverMouse = false;
@@ -20,7 +21,7 @@ lgb.button = function(x, y, params){
 	this.nextScene = params.nextScene;
 
 	this.init = function(){
-		this.canvas = $('#'+this.text).get(0);
+		this.canvas = $('#'+this.id).get(0);
 		if( this.canvas.getContext ){
 			this.ctx = this.canvas.getContext('2d');
 			lgb.init(this.ctx);
@@ -56,7 +57,7 @@ lgb.button = function(x, y, params){
 	};
 
 	this.finish = function(){
-		$('#'+this.text).remove();
+		$('#'+this.id).remove();
 	};
 
 	this.drawDisable = function(){
@@ -82,6 +83,7 @@ lgb.button = function(x, y, params){
 	};
 
 	// canvasに自分要素用のcanvas作成
-	$('#canvas').append("<canvas id='"+this.text+"' width='"+this.size_x+"' height='"+this.size_y+"' style='background-color: #30a077; left:"+this.position_x+"px; top:"+this.position_y+"px' ></canvas>");
+	var style = "background-color: #30a077; left: "+this.position_x+"px; top:"+this.position_y+"px;";
+	lgb.create_canvas(this.id, this.size_x, this.size_y, style);
 };
 

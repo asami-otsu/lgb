@@ -14,13 +14,14 @@ onload = function (){
 	}
 	ctx = canvas.getContext('2d');
 
-	lgb.init = function(ctx){
+	lgb.init = function(ctx, font_size){
+		var font_size = font_size || 25;
 		// クリア
 		ctx.clearRect(0, 0, $(canvas).width(), $(canvas).height());
 		// 枠表示
-		ctx.strokeRect(0,0, 400,300);
+		ctx.strokeRect(0, 0, $(canvas).width(), $(canvas).height());
 		// font propaty
-		ctx.font= 'bold 25px Century Gothic';
+		lgb.ctx_set_font_size(ctx);
 		// text base line propaty
 		ctx.textBaseline = 'top';
 	};

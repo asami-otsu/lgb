@@ -1,4 +1,10 @@
 
+// このシーンが持っているオブジェクトenum
+lgb.objectTypeList = {
+	HEADER: 0,
+	BUTTON: 1,
+};
+
 /**
  *
  *
@@ -7,26 +13,38 @@
 lgb.scene = function (nowType, nowTitle, buttons){
 	this.type = nowType;
 	this.title = nowTitle;
-	this.buttonManager = null;
 	this.buttons = buttons || null;
 
+	this.objects = [];
+
 	this.init = function(){
-		this.buttonManager = new lgb.buttonManager(this.buttons);
-		this.buttonManager.init();
+		// 回すため、ここで突っ込む
+		this.objects[lgb.objectTypeList.HEADER] = new lgb.header(this.type, this.title);
+		this.objects[lgb.objectTypeList.BUTTON] = new lgb.buttonManager(this.buttons);
+
+		for( var i of this.objects ){
+			i.init();
+		}
 	};
 
 	this.update = function(){
-		this.buttonManager.update();
+		for( var i of this.objects ){
+			i.update();
+		}
 	};
 
 	this.draw = function(){
 		lgb.init(ctx);
-		this.buttonManager.draw();
+		for( var i of this.objects ){
+			i.draw();
+		}
 	};
 
 	this.finish = function(){
-		this.buttonManager.finish();
-		delete this.buttonManager;
+		for( var i of this.objects ){
+			i.finish();
+			delete i;
+		}
 	};
 
 	this.getType = function(){
