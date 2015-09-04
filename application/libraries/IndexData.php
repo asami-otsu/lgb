@@ -99,6 +99,8 @@ class IndexData extends CI_Controller {
 			$y = 0;
 			foreach ( $mst as $v ) {
 				$data['params'][] = $this->setButton($button, $v, $x, $y);
+				$x += $button['x'];
+				$y += $button['y'];
 			}
 		}
 
