@@ -38,11 +38,11 @@ class IndexData extends CI_Controller {
 			$current_scene = $scene[0];
 			$buttons = $this->makeButtonParams($m_button[$scene_type]);
 
-			$data[$scene_type][] = array( 
+			$data[$scene_type] = array( 
 						'sceneName' => $current_scene['name'],
 						'drawType' => $current_scene['draw_type'],
 						'backScene' => $current_scene['back_scene'],
-						'buttons' => array ($buttons),
+						'buttons' => $buttons,
 						);
 		}
 	
@@ -65,7 +65,7 @@ class IndexData extends CI_Controller {
 
 			// action_typeがないやつは固定処理
 			if ( $button['value'] == 'none' ) {
-				$data['params'][] = $this->setButton($button, NULL, $button['x'], $button['y']);	
+				$data[]['params'] = $this->setButton($button, NULL, $button['x'], $button['y']);	
 				continue;
 			}
 
@@ -98,7 +98,7 @@ class IndexData extends CI_Controller {
 			$x = 0;
 			$y = 0;
 			foreach ( $mst as $v ) {
-				$data['params'][] = $this->setButton($button, $v, $x, $y);
+				$data['params'] = $this->setButton($button, $v, $x, $y);
 				$x += $button['x'];
 				$y += $button['y'];
 			}
