@@ -74,8 +74,7 @@ lgb.sceneManager = function(){
 
 	this.createScene = function(){
 		var nowScene = eval('this.sceneList.scene_'+this.nowType);
-		this.scene = new lgb.scene(this.nowType, nowScene.sceneName, nowScene.buttons );
-		console.log('createScene is type='+this.nowType+ ': '+this.scene.getType());
+		this.scene = new lgb.scene(this.nowType, nowScene.sceneName, nowScene.buttons, nowScene.drawType, nowScene.actionType );
 		this.scene.init();
 		this.nonProcess = false;
 	};

@@ -83,7 +83,10 @@ lgb.user = {
 				id: 1,
 				amount: 4,
 			}
-		}
+		},
+		select_quest: {
+			quest_id: null,
+		},
 	}
 };
 
