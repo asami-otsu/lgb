@@ -10,19 +10,18 @@ lgb.objectTypeList = {
  *
  *
  */
-lgb.scene = function (nowType, nowTitle, buttons, drawType, actionType){
+lgb.scene = function (nowType, nowTitle, buttons, drawType){
 	this.type = nowType;
 	this.title = nowTitle;
 	this.buttons = buttons || null;
 	this.drawType = drawType;
-	this.actionType = actionType;
 
 	this.objects = [];
 
 	this.init = function(){
 		// 回すため、ここで突っ込む
 		this.objects[lgb.objectTypeList.HEADER] = new lgb.header(this.type, this.title);
-		this.objects[lgb.objectTypeList.BUTTON] = new lgb.buttonManager(this.buttons, this.drawType, this.actionType);
+		this.objects[lgb.objectTypeList.BUTTON] = new lgb.buttonManager(this.buttons, this.drawType);
 
 		for( var i of this.objects ){
 			i.init();

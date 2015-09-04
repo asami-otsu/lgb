@@ -21,9 +21,9 @@ class Api extends CI_Controller {
 				'sceneName' => "hogehoge",
 				'buttons' => array(
 					array(
-						'x' => 1,
-						'y' => 1,
 						'params' => array(
+							'x' => 1,
+							'y' => 1,
 							"text" => "hoge",
 							"nextScene" => "fuga",
 							'actionType' => 'none',
@@ -37,9 +37,9 @@ class Api extends CI_Controller {
 				'sceneName' => 'メニュー',
 				'buttons' => array(
 					array(
-						'x' => 1,
-						'y' => 35,
 						'params' => array(
+							'x' => 1,
+							'y' => 35,
 							'id' => 'button_quest',
 							'text' => 'クエスト',
 							'nextScene' => 'quest',
@@ -47,9 +47,9 @@ class Api extends CI_Controller {
 						),
 					),
 					array(
-						'x' => 1,
-						'y' => 70,
 						'params' => array(
+							'x' => 1,
+							'y' => 70,
 							'id' => 'button_fuga',
 							'text' => 'fuga',
 							'nextScene' => 'main',
@@ -63,9 +63,9 @@ class Api extends CI_Controller {
 				'sceneName' => 'メイン',
 				'buttons' => array(
 					array(
-						'x' => 1,
-						'y' => 30,
 						'params' => array(
+							'x' => 1,
+							'y' => 30,
 							'id' => 'button_fuga',
 							'text' => 'fuga',
 							'nextScene' => 'menu',
@@ -79,9 +79,9 @@ class Api extends CI_Controller {
 				'sceneName' => 'クエスト',
 				'buttons' => array(
 					array(
-						'x' => 0,
-						'y' => 35,
 						'params' => array(
+							'x' => 0,
+							'y' => 35,
 							'id' => 'button_quest_go_opt',
 							'text' => 'クエスト出発',
 							'nextScene' => 'quest_go_opt',
@@ -94,9 +94,9 @@ class Api extends CI_Controller {
 				'sceneName' => 'クエスト出発',
 				'buttons' => array(
 					array(
-						'x' => 0,
-						'y' => 40,
 						'params' => array(
+							'x' => 0,
+							'y' => 40,
 							'id' => 'button_quest_list',
 							'text' => 'クエスト選択',
 							'nextScene' => 'quest_list',
@@ -104,9 +104,9 @@ class Api extends CI_Controller {
 						),
 					),
 					array(
-						'x' => 0,
-						'y' => 70,
 						'params' => array(
+							'x' => 0,
+							'y' => 70,
 							'id' => 'button_step',
 							'text' => '目的階層選択',
 							'nextScene' => 'step',
@@ -114,9 +114,9 @@ class Api extends CI_Controller {
 						),
 					),
 					array(
-						'x' => 0,
-						'y' => 100,
 						'params' => array(
+							'x' => 0,
+							'y' => 100,
 							'id' => 'button_weapon',
 							'text' => '武器',
 							'nextScene' => 'weapon',
@@ -124,9 +124,9 @@ class Api extends CI_Controller {
 						),
 					),
 					array(
-						'x' => 0,
-						'y' => 130,
 						'params' => array(
+							'x' => 0,
+							'y' => 130,
 							'id' => 'button_armor',
 							'text' => '防具',
 							'nextScece' => 'armor',
@@ -134,9 +134,9 @@ class Api extends CI_Controller {
 						),
 					),
 					array(
-						'x' => 0,
-						'y' => 160,
 						'params' => array(
+							'x' => 0,
+							'y' => 160,
 							'id' => 'button_item_1',
 							'text' => 'アイテム1',
 							'nextScene' => 'item_list',
@@ -144,9 +144,9 @@ class Api extends CI_Controller {
 						),
 					),
 					array(
-						'x' => 0,
-						'y' => 190,
 						'params' => array(
+							'x' => 0,
+							'y' => 190,
 							'id' => 'button_item_2',
 							'text' => 'アイテム2',
 							'nextScene' => 'item_list',
@@ -154,9 +154,9 @@ class Api extends CI_Controller {
 						),
 					),
 					array(
-						'x' => 0,
-						'y' => 220,
 						'params' => array(
+							'x' => 0,
+							'y' => 220,
 							'id' => 'button_time',
 							'text' => '所要時間',
 							'nextScene' => 'none',
@@ -164,9 +164,9 @@ class Api extends CI_Controller {
 						),
 					),
 					array(
-						'x' => 0,
-						'y' => 250,
 						'params' => array(
+							'x' => 0,
+							'y' => 250,
 							'id' => 'button_result_time',
 							'text' => '期間予定時刻',
 							'nextScene' => 'none',
@@ -174,9 +174,9 @@ class Api extends CI_Controller {
 						),
 					),
 					array(
-						'x' => 0,
-						'y' => 280,
 						'params' => array(
+							'x' => 0,
+							'y' => 280,
 							'id' => 'button_go',
 							'text' => '出発',
 							'nextScene' => 'go',
@@ -190,13 +190,14 @@ class Api extends CI_Controller {
 				'drawType' => "none",
 				'buttons' => array(
 					array(
-						'x' => 0,
-						'y' => 35,
 						'params' => array(
+							'x' => 0,
+							'y' => 35,
 							'id' => 'button_quest_1',
 							'text' => 'クエスト1',
 							'nextScene' => 'quest_go_opt',
-							'actionType' => 'quest_select',
+							'actionType' => 'questSelect',
+							'value' => 1,
 						),
 					),
 				),

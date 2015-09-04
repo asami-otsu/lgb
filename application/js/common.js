@@ -8,6 +8,7 @@ var lgb = {};
 
 lgb.common = {
 	api_url: "http://192.168.56.10/index.php/Api/getButtons",
+//	api_url: "http://192.168.56.10/index.php/Test/menu",
 	title: "Let Go Braver!!!",
 };
 
@@ -17,7 +18,7 @@ lgb.ajax = function (callback, params, url){
 	var params = params || [];
 
 	var res = $.ajax({
-		type: "GET",
+		type: "POST",
 		url: url,
 		cache: false,
 		dataType: "json",
@@ -84,8 +85,15 @@ lgb.user = {
 				amount: 4,
 			}
 		},
-		select_quest: {
+		quest_select: {
 			quest_id: null,
+			step: null,
+			weapon_id: null,
+			armor_id: null,
+			item_id_1: null,
+			item_id_2: null,
+			time: null,
+			r_time: null,
 		},
 	}
 };
@@ -122,7 +130,7 @@ lgb.master = {
 };
 
 lgb.ctx_set_font_size = function(ctx, font_size){
-	var font_size = font_size || 25;
+	var font_size = font_size || 15;
 	ctx.font = 'bold '+font_size+'px Century Gothic';
 };
 

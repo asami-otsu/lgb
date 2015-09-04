@@ -20,6 +20,7 @@ lgb.sceneManager = function(){
 		this.remove = false;
 		// サーバーからデータ取得
 		var scenes = $.ajax({
+				type: "POST",
 				url: lgb.common.api_url, 
 				data: null, 
 				success: null, 
@@ -74,9 +75,13 @@ lgb.sceneManager = function(){
 
 	this.createScene = function(){
 		var nowScene = eval('this.sceneList.scene_'+this.nowType);
-		this.scene = new lgb.scene(this.nowType, nowScene.sceneName, nowScene.buttons, nowScene.drawType, nowScene.actionType );
+		this.scene = new lgb.scene(this.nowType, nowScene.sceneName, nowScene.buttons, nowScene.drawType );
 		this.scene.init();
 		this.nonProcess = false;
+	};
+
+	this.getNowSceneType = function(){
+		return this.nowType;
 	};
 
 };
