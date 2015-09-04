@@ -68,29 +68,31 @@ CREATE TABLE IF NOT EXISTS `m_button` (
   `height` int(11) NOT NULL DEFAULT '30',
   `next_scene` varchar(32) DEFAULT NULL,
   `action_type` varchar(32) DEFAULT 'none',
+  `value` varchar(32) NOT NULL DEFAULT 'none',
   `created` datetime DEFAULT NULL,
   `modified` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `scene_type` (`scene_type`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Dumping data for table lgb_local.m_button: ~14 rows (approximately)
+-- Dumping data for table lgb_local.m_button: ~15 rows (approximately)
 /*!40000 ALTER TABLE `m_button` DISABLE KEYS */;
-INSERT INTO `m_button` (`id`, `scene_type`, `name`, `text`, `sub_text`, `tag_id`, `x`, `y`, `width`, `height`, `next_scene`, `action_type`, `created`, `modified`) VALUES
-	(1, 'scene_menu', 'クエスト', '', 'none', 'button_quest', 0, 0, 400, 30, 'quest', 'none', '2015-09-01 16:32:05', '2015-09-01 16:32:05'),
-	(2, 'scene_menu', '所持品', '', 'none', 'button_item', 0, 20, 400, 30, 'my_item', 'none', '2015-09-01 16:32:05', '2015-09-01 16:32:05'),
-	(3, 'scene_menu', 'アイテムショップ', '', 'none', 'button_shop', 0, 40, 400, 30, 'shop', 'none', '2015-09-01 16:32:05', '2015-09-01 16:32:05'),
-	(4, 'scene_menu', '強化屋', '', 'none', 'button_enchance', 0, 60, 400, 30, 'enhance', 'none', '2015-09-01 16:32:05', '2015-09-01 16:32:05'),
-	(5, 'scene_menu', '記録', '', 'none', 'button_logs', 0, 80, 400, 30, 'logs', 'none', '2015-09-01 16:32:05', '2015-09-01 16:32:05'),
-	(6, 'scene_quest', 'クエスト出発', '', 'none', 'button_quest_go_opt', 0, 0, 400, 30, 'quest_go_opt', 'none', '2015-09-03 19:59:51', '2015-09-03 19:59:51'),
-	(7, 'scene_quest_go_opt', 'ダンジョン', '', 'none', 'button_quest_list', 0, 0, 400, 30, 'dangeon_select', 'none', '2015-09-03 19:59:51', '2015-09-03 19:59:51'),
-	(8, 'scene_quest_go_opt', '目的階', '', 'none', 'button_floor', 0, 20, 400, 30, 'none', 'none', '2015-09-03 19:59:51', '2015-09-03 19:59:51'),
-	(9, 'scene_quest_go_opt', '武器', '', 'none', 'button_weapon', 0, 40, 400, 30, 'equipe', 'none', '2015-09-03 19:59:51', '2015-09-03 19:59:51'),
-	(10, 'scene_quest_go_opt', '防具', '', 'none', 'button_armor', 0, 60, 400, 30, 'equipe', 'none', '2015-09-03 19:59:51', '2015-09-03 19:59:51'),
-	(11, 'scene_quest_go_opt', 'アイテム１', '', 'none', 'button_item1', 0, 80, 400, 30, 'item', 'none', '2015-09-03 19:59:51', '2015-09-03 19:59:51'),
-	(12, 'scene_quest_go_opt', 'アイテム２', '', 'none', 'button_item2', 0, 100, 400, 30, 'item', 'none', '2015-09-03 19:59:51', '2015-09-03 19:59:51'),
-	(13, 'scene_quest_go_opt', '所要時間', '', 'none', 'button_time', 0, 100, 400, 30, 'none', 'none', '2015-09-03 19:59:51', '2015-09-03 19:59:51'),
-	(14, 'scene_quest_go_opt', '帰還予定時刻', '', 'none', 'button_left_time', 0, 120, 400, 30, 'none', 'none', '2015-09-03 19:59:51', '2015-09-03 19:59:51');
+INSERT INTO `m_button` (`id`, `scene_type`, `name`, `text`, `sub_text`, `tag_id`, `x`, `y`, `width`, `height`, `next_scene`, `action_type`, `value`, `created`, `modified`) VALUES
+	(1, 'scene_menu', 'クエスト', '', 'none', 'button_quest', 0, 0, 400, 30, 'quest', 'none', 'none', '2015-09-01 16:32:05', '2015-09-01 16:32:05'),
+	(2, 'scene_menu', '所持品', '', 'none', 'button_item', 0, 20, 400, 30, 'my_item', 'none', 'none', '2015-09-01 16:32:05', '2015-09-01 16:32:05'),
+	(3, 'scene_menu', 'アイテムショップ', '', 'none', 'button_shop', 0, 40, 400, 30, 'shop', 'none', 'none', '2015-09-01 16:32:05', '2015-09-01 16:32:05'),
+	(4, 'scene_menu', '強化屋', '', 'none', 'button_enchance', 0, 60, 400, 30, 'enhance', 'none', 'none', '2015-09-01 16:32:05', '2015-09-01 16:32:05'),
+	(5, 'scene_menu', '記録', '', 'none', 'button_logs', 0, 80, 400, 30, 'logs', 'none', 'none', '2015-09-01 16:32:05', '2015-09-01 16:32:05'),
+	(6, 'scene_quest', 'クエスト出発', '', 'none', 'button_quest_go_opt', 0, 0, 400, 30, 'quest_go_opt', 'none', 'none', '2015-09-03 19:59:51', '2015-09-03 19:59:51'),
+	(7, 'scene_quest_go_opt', 'ダンジョン', '', 'none', 'button_quest_list', 0, 0, 400, 30, 'dangeon_select', 'quest_select', 'none', '2015-09-03 19:59:51', '2015-09-03 19:59:51'),
+	(8, 'scene_quest_go_opt', '目的階', '', 'none', 'button_floor', 0, 20, 400, 30, 'none', 'none', 'none', '2015-09-03 19:59:51', '2015-09-03 19:59:51'),
+	(9, 'scene_quest_go_opt', '武器', '', 'none', 'button_weapon', 0, 40, 400, 30, 'equipe', 'none', 'none', '2015-09-03 19:59:51', '2015-09-03 19:59:51'),
+	(10, 'scene_quest_go_opt', '防具', '', 'none', 'button_armor', 0, 60, 400, 30, 'equipe', 'none', 'none', '2015-09-03 19:59:51', '2015-09-03 19:59:51'),
+	(11, 'scene_quest_go_opt', 'アイテム１', '', 'none', 'button_item1', 0, 80, 400, 30, 'item', 'none', 'none', '2015-09-03 19:59:51', '2015-09-03 19:59:51'),
+	(12, 'scene_quest_go_opt', 'アイテム２', '', 'none', 'button_item2', 0, 100, 400, 30, 'item', 'none', 'none', '2015-09-03 19:59:51', '2015-09-03 19:59:51'),
+	(13, 'scene_quest_go_opt', '所要時間', '', 'none', 'button_time', 0, 120, 400, 30, 'none', 'none', 'none', '2015-09-03 19:59:51', '2015-09-03 19:59:51'),
+	(14, 'scene_quest_go_opt', '帰還予定時刻', '', 'none', 'button_left_time', 0, 140, 400, 30, 'none', 'none', 'none', '2015-09-03 19:59:51', '2015-09-03 19:59:51'),
+	(15, 'scene_quest_select', 'ダンジョン選択', 'none', 'none', 'none', 0, 20, 400, 30, 'none', 'none', 'quest_select', '2015-09-04 17:42:43', '2015-09-04 17:42:45');
 /*!40000 ALTER TABLE `m_button` ENABLE KEYS */;
 
 
@@ -209,7 +211,7 @@ CREATE TABLE IF NOT EXISTS `m_quest` (
   `floor_time` int(11) NOT NULL DEFAULT '0',
   `before_quest_id` int(11) NOT NULL DEFAULT '0',
   `clear_num` int(11) NOT NULL DEFAULT '0',
-  `note` text NOT NULL,
+  `text` text NOT NULL,
   `created` datetime DEFAULT NULL,
   `modified` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -217,7 +219,7 @@ CREATE TABLE IF NOT EXISTS `m_quest` (
 
 -- Dumping data for table lgb_local.m_quest: ~5 rows (approximately)
 /*!40000 ALTER TABLE `m_quest` DISABLE KEYS */;
-INSERT INTO `m_quest` (`id`, `name`, `floor_max`, `floor_time`, `before_quest_id`, `clear_num`, `note`, `created`, `modified`) VALUES
+INSERT INTO `m_quest` (`id`, `name`, `floor_max`, `floor_time`, `before_quest_id`, `clear_num`, `text`, `created`, `modified`) VALUES
 	(1, 'さいしょの洞窟', 5, 1, 0, 0, '家の隣にある洞窟', '2015-09-01 17:16:07', '2015-09-01 17:16:07'),
 	(2, '寂れた城', 7, 2, 1, 5, '廃城となって30年目', '2015-09-01 17:16:07', '2015-09-01 17:16:07'),
 	(3, '穏やかそうな河', 10, 3, 2, 7, '穏やかなのは気のせいだった。。。', '2015-09-01 17:16:07', '2015-09-01 17:16:07'),
@@ -347,9 +349,10 @@ CREATE TABLE IF NOT EXISTS `m_scene` (
 -- Dumping data for table lgb_local.m_scene: ~3 rows (approximately)
 /*!40000 ALTER TABLE `m_scene` DISABLE KEYS */;
 INSERT INTO `m_scene` (`id`, `name`, `draw_type`, `scene_type`, `back_scene`, `created`, `modified`) VALUES
-	(1, 'メインメニュー', 'none', 'scene_menu', NULL, '2015-09-03 19:51:05', '2015-09-03 19:51:05'),
-	(2, 'クエスト', 'none', 'scene_quest', NULL, '2015-09-03 19:51:05', '2015-09-03 19:51:05'),
-	(3, 'クエスト出発', 'none', 'scene_quest_go_opt', NULL, '2015-09-03 19:51:05', '2015-09-03 19:51:05');
+	(1, 'メインメニュー', 'none', 'scene_menu', 'none', '2015-09-03 19:51:05', '2015-09-03 19:51:05'),
+	(2, 'クエスト', 'none', 'scene_quest', 'scene_menu', '2015-09-03 19:51:05', '2015-09-03 19:51:05'),
+	(3, 'クエスト出発', 'none', 'scene_quest_go_opt', 'scene_quest', '2015-09-03 19:51:05', '2015-09-03 19:51:05'),
+	(4, 'ダンジョン選択', 'none', 'scene_quest_select', 'scene_quest_go_opt', '2015-09-04 18:08:14', '2015-09-04 18:08:16');
 /*!40000 ALTER TABLE `m_scene` ENABLE KEYS */;
 
 

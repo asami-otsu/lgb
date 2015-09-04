@@ -33,48 +33,94 @@ class IndexData extends CI_Controller {
 			return false;
 		}
 
-		// クエスト情報
-		$this->load->model('m_quest', 'm_quest');
-		$m_quest = $this->m_quest->find_all();
-		if ( empty($m_quest) ) {
-			log_message('クエストがみつかりません。');
-			return false;
-		}
-
-		// アイテム情報
-		//$this->load->model('m_item', 'm_item');
-		//$m_item = $this->
-
 		// data整形
 		foreach ( $m_scene as $scene_type => $scene ) {
 			$current_scene = $scene[0];
+			$buttons = $this->makeButtonParams($m_button[$scene_type]);
 
-			foreach ( $m_button[$scene_type] as $button ) {
-				$data[$scene_type][] = array( 
-								'sceneName' => $current_scene['name'],
-								'drawType' => $current_scene['draw_type'],
-								'backScene' => $current_scene['back_scene'],
-								'buttons' => array (
-									array(
-									'x' => $button['x'],
-									'y' => $button['y'],
-									'width' => $button['width'],
-									'height' => $button['height'],
-									'params' => array(
-										'id' => $button['tag_id'],
-										'title' => $button['name'],
-										'text' => $button['text'],
-										'subText' => $button['sub_text'],
-										'nextScene' => $button['next_scene'],
-										'actionType' => $button['action_type'],
-										),
-									),
-								),
-							);
-			}
+			$data[$scene_type][] = array( 
+						'sceneName' => $current_scene['name'],
+						'drawType' => $current_scene['draw_type'],
+						'backScene' => $current_scene['back_scene'],
+						'buttons' => array ($buttons),
+						);
 		}
 	
 		return $data;
+	}
+
+	/**
+	 * ボタンの詳細を返す
+	 *
+	 * @param 
+	 * @return array
+	 */
+	public function makeButtonParams( $buttons ) {
+		$data = array();
+
+		foreach ( $buttons as $button ) {
+			$tmp = array();
+			$value = 0;
+			$mst = array();
+
+			// action_typeがないやつは固定処理
+			if ( $button['value'] == 'none' ) {
+				$data['params'][] = $this->setButton($button, NULL, $button['x'], $button['y']);	
+				continue;
+			}
+
+			switch ( $button['scene_type'] ) {
+				case M_Button::SCENE_TYPE_QUEST_SELECT:
+
+					// クエスト情報
+					$this->load->model('m_quest', 'm_quest');
+					$mst = $this->m_quest->find_all();
+					if ( empty($mst) ) {
+						log_message('クエストがみつかりません。');
+					}
+
+					break;
+
+				case M_Button::SCENE_TYPE_WEAPON:
+					break;
+
+				case M_Button::SCENE_TYPE_ARMOR:
+					break;
+
+				case M_Button::SCENE_TYPE_ITEM:
+					break;
+
+				default:
+					break;
+				
+			}
+
+			$x = 0;
+			$y = 0;
+			foreach ( $mst as $v ) {
+				$data['params'][] = $this->setButton($button, $v, $x, $y);
+			}
+		}
+
+		return $data;
+	}
+
+	public function setButton($button, $value, $x, $y) {
+		$value = empty($value)? $button : $value;
+		return array(
+			'x' => $x,
+			'y' => $y,
+			'width' => $button['width'],
+			'height' => $button['height'],
+			'id' => $button['tag_id'],
+			'title' => $value['name'],
+			'text' => $value['text'],
+			'subText' => $button['sub_text'],
+			'nextScene' => $button['next_scene'],
+			'actionType' => $button['action_type'],
+			'value' => $value['id'],
+		);
+
 	}
 
 }
