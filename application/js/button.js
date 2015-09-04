@@ -56,11 +56,9 @@ lgb.button = function(params){
 		this.canvas.addEventListener('mouseout', this.onOut, false);
 
 
-		Object.keys(lgb.button_scene_action_list).forEach(function(key){
-			if( key == lgb.app.getNowSceneType() ){
-				this.isSceneAction = true;
-			};
-		});
+		if( lgb.app.getNowSceneType() in lgb.button_scene_action_list ){
+			this.isSceneAction = true;
+		}
 	};
 
 	this.update = function(){
@@ -135,7 +133,6 @@ console.log("if in isSceneAction");
 
 	this.setTextByUserData = function(type){
 		if( type == "go" ){
-console.log('setTextByUserData func go');
 			return ;
 		}
 		this.sub_text = "クエストマスターからid=" + eval("lgb.user.data.quest_select."+type) + "のデータを取得し、表示する";

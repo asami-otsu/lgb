@@ -8,6 +8,7 @@ var lgb = {};
 
 lgb.common = {
 	api_url: "http://192.168.56.10/index.php/Api/getButtons",
+//	api_url: "http://192.168.56.10/index.php/Test/menu",
 	title: "Let Go Braver!!!",
 };
 
