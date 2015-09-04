@@ -29,7 +29,7 @@ lgb.header = function(type, title){
 		var gametitle_y = 0;
 		var scenetitle_x = 5;
 		var scenetitle_y = 15;
-		var money_x = 350;
+		var money_x = 300;
 		var money_y =5;
 
 		// 描画
