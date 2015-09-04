@@ -71,7 +71,7 @@ class LGB_Model extends CI_Model {
 	 * @return array
 	 */
 	public function find_all() {
-		return $this->db->get($this->_table)->result();
+		return $this->db->get($this->_table)->result_array();
 	}
 
 	/**
@@ -91,7 +91,7 @@ class LGB_Model extends CI_Model {
 	 * @return stdClass
 	 */
 	public function find($id) {
-		$ret = $this->db->where(array('id' => $id))->get($this->_table)->row();
+		$ret = $this->db->where(array('id' => $id))->get($this->_table)->row_array();
 		return $ret;
 	}
 
@@ -103,5 +103,20 @@ class LGB_Model extends CI_Model {
 	public function now() {
 		return date('Y-m-d H:i:s');
 	}
+
+	/**
+	 *
+	 */
+	public function get_all_key_value($key = 'id') {
+                $data = array();
+
+                $result = $this->db->get($this->_table)->result_array();
+
+                foreach ( $result as $value) {
+                        $data[$value[$key]][] = $value;
+                }
+		return $data;
+        }
+
 }
 
