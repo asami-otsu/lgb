@@ -18,9 +18,16 @@ class IndexData extends CI_Controller {
 			return false;
 		}
 
+		// Scene情報
+		$this->load->model('m_scene', 'm_scene');
+		$m_scene = $this->m_scene->get_all_key_value('scene_type');
+		if ( empty($m_scene) ) {
+
+		}
+
 		// Button情報
 		$this->load->model('m_button', 'm_button');
-		$m_button = $this->m_button->find_all();
+		$m_button = $this->m_button->get_all_key_value('scene_type');
 		if ( empty($m_button) ) {
 			log_message('ボタン情報がみつかりません。');
 			return false;
@@ -39,22 +46,36 @@ class IndexData extends CI_Controller {
 		//$m_item = $this->
 
 		// data整形
-		foreach ( $m_button as $values) {
-			$data[$values->scene_type][] = array( 'sceneName' => 'hogetitle',
+		foreach ( $m_scene as $scene_type => $scene ) {
+			$current_scene = $scene[0];
+
+			foreach ( $m_button[$scene_type] as $button ) {
+				$data[$scene_type][] = array( 
+								'sceneName' => $current_scene['name'],
+								'drawType' => $current_scene['draw_type'],
+								'backScene' => $current_scene['back_scene'],
 								'buttons' => array (
 									array(
-										'x' => $values->x,
-										'y' => $values->y,
-										'params' => array(
-											'text' => $values->name,
-											'nextScene' => $values->next_scene,
+									'x' => $button['x'],
+									'y' => $button['y'],
+									'width' => $button['width'],
+									'height' => $button['height'],
+									'params' => array(
+										'id' => $button['tag_id'],
+										'title' => $button['name'],
+										'text' => $button['text'],
+										'subText' => $button['sub_text'],
+										'nextScene' => $button['next_scene'],
+										'actionType' => $button['action_type'],
 										),
 									),
 								),
 							);
+			}
 		}
 	
 		return $data;
 	}
 
 }
+
