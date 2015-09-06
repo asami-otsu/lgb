@@ -20,14 +20,14 @@ class IndexData extends CI_Controller {
 
 		// Scene情報
 		$this->load->model('m_scene', 'm_scene');
-		$m_scene = $this->m_scene->get_all_key_value('scene_type');
+		$m_scene = $this->m_scene->get_all_key_value('scene_type', TRUE);
 		if ( empty($m_scene) ) {
 
 		}
 
 		// Button情報
 		$this->load->model('m_button', 'm_button');
-		$m_button = $this->m_button->get_all_key_value('scene_type');
+		$m_button = $this->m_button->get_all_key_value('scene_type', TRUE);
 		if ( empty($m_button) ) {
 			log_message('ボタン情報がみつかりません。');
 			return false;

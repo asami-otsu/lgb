@@ -107,14 +107,23 @@ class LGB_Model extends CI_Model {
 	/**
 	 *
 	 */
-	public function get_all_key_value($key = 'id') {
+	public function get_all_key_value($key = 'id', $duplicate_flg=FALSE) {
                 $data = array();
 
                 $result = $this->db->get($this->_table)->result_array();
+		if ( empty($result) || count($result) == 0 ) {
+			return $data;
+		}
 
-                foreach ( $result as $value) {
-                        $data[$value[$key]][] = $value;
-                }
+		if ( $duplicate_flg == TRUE ) {
+                	foreach ( $result as $value) {
+                        	$data[$value[$key]][] = $value;
+                	}
+		} else {
+			foreach ( $result as $value ) {
+				$data[$value[$key]] = $value;
+			}
+		}
 		return $data;
         }
 
