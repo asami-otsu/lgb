@@ -179,7 +179,7 @@ class Api extends CI_Controller {
 							'y' => 280,
 							'id' => 'button_go',
 							'text' => '出発',
-							'nextScene' => 'go',
+							'nextScene' => 'quest',
 							'actionType' => 'questGo',
 						),
 					),

@@ -48,6 +48,7 @@ lgb.button = function(params){
 	this.value = params.value || 0;
 	this.inOverMouse = false;
 	this.isSceneAction = false;
+	this.isNotChangeScene = false;
 
 	this.canvas = null;
 	this.ctx = null;
@@ -75,6 +76,8 @@ lgb.button = function(params){
 		if( lgb.app.getNowSceneType() in lgb.button_scene_action_list ){
 			eval( "this."+lgb.button_scene_action_list[lgb.app.getNowSceneType()][this.id]);
 		}
+
+		this.isNotChangeScene = false;
 	};
 
 	this.update = function(){
@@ -249,19 +252,27 @@ lgb.button = function(params){
 
 	// 出発アクション
 	this.questGoAction = function(){
+		var quest = lgb.user.data.quest_select;
+		if( quest.quest_id == null ){
+			this.isNotChangeScene = true;
+			alert('クエストが選択されていません...!');
+			return ;
+		}
 		// ユーザーデータ更新
 		///lgb.user.questGo();
-		// シーンをチェンジ
-		this.changeSceneAction();
 	};
 
 	// シーン切り替え処理
 	this.changeSceneAction = function(){
 		// 次のシーンに移る前にアクション関数実行
 		var action = "this."+this.actionType+"Action()";
-		eval (action);
+		eval(action);
 
 		if( this.nextScene == "none" ){
+			alert('このボタンはクリックしても反応しません。');
+			return ;
+		}
+		if( this.isNotChangeScene ){
 			return ;
 		}
 		lgb.app.setSceneType(this.nextScene);
