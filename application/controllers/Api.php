@@ -194,6 +194,7 @@ class Api extends CI_Controller {
 							'x' => 0,
 							'y' => 35,
 							'id' => 'button_quest_1',
+							'title' => 'ダンジョン1',
 							'text' => 'クエスト1',
 							'nextScene' => 'quest_go_opt',
 							'actionType' => 'questSelect',

@@ -57,7 +57,7 @@ lgb.button = function(params){
 
 
 		if( lgb.app.getNowSceneType() in lgb.button_scene_action_list ){
-			this.isSceneAction = true;
+			eval( "this."+lgb.button_scene_action_list[lgb.app.getNowSceneType()][this.id]);
 		}
 	};
 
@@ -68,12 +68,6 @@ lgb.button = function(params){
 		if( this.isOverMouse ){
 			this.ctx.fillStyle = "#ff0000";
 			this.ctx.strokeStyle = '#ff0000';
-		}
-
-		if( this.isSceneAction ){
-console.log("if in isSceneAction");
-			eval( "this."+lgb.button_scene_action_list[lgb.app.getNowSceneType()][this.id]);
-			//eval ("this."+ eval( eval("lgb.button_scene_action_list."+lgb.app.getNowSceneType())+ "."+this.id) );
 		}
 	};
 
@@ -131,11 +125,15 @@ console.log("if in isSceneAction");
 		return (x <= m_x && y <= m_y && (x + this.width) >= m_x && (y + this.height) >= m_y );
 	};
 
+	// ボタンの行動
 	this.setTextByUserData = function(type){
 		if( type == "go" ){
 			return ;
 		}
-		this.sub_text = "クエストマスターからid=" + eval("lgb.user.data.quest_select."+type) + "のデータを取得し、表示する";
+		if( eval("lgb.user.data.quest_select."+type) != null ){
+			this.sub_text = "クエストマスタから該当データを取得する";
+			return ;
+		}
 	}
 
 	/* action func */
@@ -154,7 +152,7 @@ console.log("if in isSceneAction");
 
 
 	// canvasに自分要素用のcanvas作成
-	var style = "background-color: #30a077; left: "+this.position_x+"px; top:"+this.position_y+"px;";
+	var style = "background-color: #0ff; left: "+this.position_x+"px; top:"+this.position_y+"px;";
 	lgb.create_canvas(this.id, this.width, this.height, style);
 };
 
