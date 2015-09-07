@@ -1,6 +1,9 @@
 <?php
 
 class IndexData extends CI_Controller {
+
+	protected $_user_items = array();
+	protected $_items = array();
 	
 	/**
 	 * 最初に渡すデータをまとめる
@@ -57,6 +60,11 @@ class IndexData extends CI_Controller {
 	 */
 	public function makeButtonParams( $buttons ) {
 		$data = array();
+		$this->load->model('m_item', 'm_item');
+		$this->_items = $this->m_item->get_all_key_value('id');
+
+		$this->load->model('user_item', 'user_item');
+		$this->_user_item = $this->user_item->get_all_key_value('item_id');
 
 		foreach ( $buttons as $button ) {
 			$tmp = array();
@@ -70,8 +78,8 @@ class IndexData extends CI_Controller {
 			}
 
 			switch ( $button['scene_type'] ) {
-				case M_Button::SCENE_TYPE_QUEST_SELECT:
 
+				case M_Button::SCENE_TYPE_QUEST_SELECT:
 					// クエスト情報
 					$this->load->model('m_quest', 'm_quest');
 					$mst = $this->m_quest->find_all();
@@ -81,13 +89,22 @@ class IndexData extends CI_Controller {
 
 					break;
 
-				case M_Button::SCENE_TYPE_WEAPON:
+				case M_Button::SCENE_TYPE_WEAPON_SELECT:
+					// 武器情報
+					$mst = $this->user_item->get_item_list($this->_user_items, $this->_items, 1);
+
 					break;
 
-				case M_Button::SCENE_TYPE_ARMOR:
+				case M_Button::SCENE_TYPE_ARMOR_SELECT:
+					// 防具情報
+					$mst = $this->user_item->get_item_list($this->_user_items, $this->_items, 2);
+
 					break;
 
-				case M_Button::SCENE_TYPE_ITEM:
+				case M_Button::SCENE_TYPE_ITEM_SELECT:
+					// アイテム情報
+					$mst = $this->user_item->get_item_list($this->_user_items, $this->_items, 3);
+
 					break;
 
 				default:
@@ -109,6 +126,12 @@ class IndexData extends CI_Controller {
 
 	public function setButton($button, $value, $x, $y) {
 		$value = empty($value)? $button : $value;
+
+		// sub_text作る？
+		if ($button['sub_text'] == M_Button::SUB_TEXT_GET_VALUE) {
+			$button['sub_text'] = $this->getSubTextValue($button['action_type']);
+		}
+			
 		return array(
 			'x' => $x,
 			'y' => $y,
@@ -123,6 +146,34 @@ class IndexData extends CI_Controller {
 			'value' => $value['id'],
 		);
 
+	}
+
+	/**
+	 * sub_text作成
+	 *
+	 * @param action_type
+	 * @return int
+	 */
+	public function getSubTextValue($action_type) {
+		$type = 0;
+
+		if ( stristr($action_type, 'weapon') ) {
+			$type = 1;
+		} else if ( stristr($action_type, 'armor') ) {
+			$type = 2;
+		} else if ( stristr($action_type, 'drag') ) {
+			$type = 3;
+		} else if ( stristr($action_type, 'ore') ) {
+			$type = 4;
+		}
+
+		if ($type == 0) {
+			return 0;
+		}
+
+		$this->load->model('m_item', 'm_item');
+		$result = $this->m_item->get_all(array('type' => $type));
+		return count($result);
 	}
 
 }

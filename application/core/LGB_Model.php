@@ -88,10 +88,25 @@ class LGB_Model extends CI_Model {
 	 * find
 	 * 
 	 * @param  integer|string $id
-	 * @return stdClass
+	 * @return array
 	 */
 	public function find($id) {
 		$ret = $this->db->where(array('id' => $id))->get($this->_table)->row_array();
+		return $ret;
+	}
+
+	/**
+	 * get_all
+	 * 
+	 * @param  array
+	 * @return array
+	 */
+	public function get_all($where) {
+		if ( empty($where) || !is_array($where) ) {
+			$ret = $this->find_all();
+		} else {
+			$ret = $this->db->where($where)->get($this->_table)->result_array();
+		}
 		return $ret;
 	}
 
@@ -105,7 +120,11 @@ class LGB_Model extends CI_Model {
 	}
 
 	/**
-	 *
+	 * key_valueで取得する
+	 * 
+	 * @param string $key
+	 * @param boolean $duplicate_flg
+	 * @return array
 	 */
 	public function get_all_key_value($key = 'id', $duplicate_flg=FALSE) {
                 $data = array();
