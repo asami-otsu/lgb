@@ -250,7 +250,7 @@ lgb.button = function(params){
 	// 出発アクション
 	this.questGoAction = function(){
 		// ユーザーデータ更新
-		lgb.user.questGo();
+		///lgb.user.questGo();
 		// シーンをチェンジ
 		this.changeSceneAction();
 	};

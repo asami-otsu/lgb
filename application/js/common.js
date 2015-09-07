@@ -95,6 +95,7 @@ lgb.user = {
 			item_id_2: null,
 			time: null,
 			r_time: null,
+			log_id: null,
 		},
 	},
 	questGo: function(){
