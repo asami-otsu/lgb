@@ -5,6 +5,9 @@ canvas{
 canvas#main{
 	position: relative;
 }
+canvas#header{
+	position: relative;
+}
 
 .button_one {
     	padding: 20px;

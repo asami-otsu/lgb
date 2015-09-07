@@ -7,8 +7,9 @@ var lgb = {};
 // console.log(lgb.test_string);
 
 lgb.common = {
-	api_url: "http://192.168.56.10/index.php/Api/getButtons",
-//	api_url: "http://192.168.56.10/index.php/Test/menu",
+	api_button_url: "http://192.168.56.10/index.php/Api/getButtons",
+	api_test_button_url: "http://192.168.56.10/index.php/Test/menu",
+	api_user_url: "http://192.168.56.10/index.php/User/questGo",
 	title: "Let Go Braver!!!",
 };
 
@@ -95,7 +96,22 @@ lgb.user = {
 			time: null,
 			r_time: null,
 		},
-	}
+	},
+	questGo: function(){
+		// phpと通信し、ユーザーデータを更新/クエスト処理の開始
+		var data = {
+			user_id: this.id,
+			quest_data: this.data.quest_select,
+		};
+		$.ajax({
+			type: "POST",
+			url: lgb.common.user_api,
+			data: data,
+			success: null,
+			dataType: "json",
+			async: false
+		});
+	},
 };
 
 lgb.master = {
