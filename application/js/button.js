@@ -13,6 +13,21 @@ lgb.button_scene_action_list = {
 	},
 };
 
+lgb.button_action_list = {
+	sub_text: {
+		quest_id: 'setSubTextQuestId()',
+		step: 'setSubTextStep()',
+		weapon_id: 'setSubTextWeaponId()',
+		armor_id: 'setSubTextArmorId()',
+		item_id_1: 'setSubTextItemId1()',
+		item_id_2: 'setSubTextItemId2()',
+		time: 'setSubTextTime()',
+		r_time: 'setSubTextRTime()',
+		go: 'goAction()',
+	},
+	
+};
+
 /**
  * LGBボタン基本オブジェクト
  * @param int x
@@ -57,7 +72,7 @@ lgb.button = function(params){
 
 
 		if( lgb.app.getNowSceneType() in lgb.button_scene_action_list ){
-			this.isSceneAction = true;
+			eval( "this."+lgb.button_scene_action_list[lgb.app.getNowSceneType()][this.id]);
 		}
 	};
 
@@ -68,12 +83,6 @@ lgb.button = function(params){
 		if( this.isOverMouse ){
 			this.ctx.fillStyle = "#ff0000";
 			this.ctx.strokeStyle = '#ff0000';
-		}
-
-		if( this.isSceneAction ){
-console.log("if in isSceneAction");
-			eval( "this."+lgb.button_scene_action_list[lgb.app.getNowSceneType()][this.id]);
-			//eval ("this."+ eval( eval("lgb.button_scene_action_list."+lgb.app.getNowSceneType())+ "."+this.id) );
 		}
 	};
 
@@ -131,11 +140,16 @@ console.log("if in isSceneAction");
 		return (x <= m_x && y <= m_y && (x + this.width) >= m_x && (y + this.height) >= m_y );
 	};
 
+	// ボタンの行動
 	this.setTextByUserData = function(type){
-		if( type == "go" ){
+		if( eval("lgb.user.data.quest_select."+type) == null ){
+			// ユーザーデータに何もなかったら、何もしない（テキストの表示なので。）
 			return ;
 		}
-		this.sub_text = "クエストマスターからid=" + eval("lgb.user.data.quest_select."+type) + "のデータを取得し、表示する";
+		this.sub_text = "";
+
+		// lgb.button_action_list.sub_text のtype変数key 関数の実行
+		eval("this."+eval("lgb.button_action_list.sub_text."+type) );
 	}
 
 	/* action func */
@@ -153,8 +167,44 @@ console.log("if in isSceneAction");
 	};
 
 
+	this.setSubTextQuestId = function(){
+		var quest_name = lgb.master.quest[lgb.user.data.quest_select.quest_id].name;
+		this.sub_text = quest_name;
+	};
+
+	this.setSubTextStep = function(){
+		this.sub_text = "階層数";
+	}
+
+	this.setSubTextWeaponId = function(){
+		this.sub_text = "ぶき";
+	}
+
+	this.setSubTextArmorId = function(){
+		this.sub_text = "ぼうぐ";
+	}
+	this.setSubTextItemId1 = function(){
+		this.sub_text = "あいてむ１";
+	}
+
+	this.setSubTextItemId2 = function(){
+		this.sub_text = "あいてむ２";
+	}
+
+	this.setSubTextTime = function(){
+		this.sub_text = "じかん";
+	}
+
+	this.setSubTextRTime = function(){
+		this.sub_text = "きかんじこく";
+	}
+
+	this.goAction = function(){
+		this.sub_text = "";
+	}
+
 	// canvasに自分要素用のcanvas作成
-	var style = "background-color: #30a077; left: "+this.position_x+"px; top:"+this.position_y+"px;";
+	var style = "background-color: #0ff; left: "+this.position_x+"px; top:"+this.position_y+"px;";
 	lgb.create_canvas(this.id, this.width, this.height, style);
 };
 
