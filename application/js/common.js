@@ -1,4 +1,10 @@
 
+/* library */
+String.prototype.capitalizeFirstLetter = function() {
+    return this.charAt(0).toUpperCase() + this.slice(1);
+}
+
+
 /* js 呼び出し元設定資料 */
 
 var lgb = {};

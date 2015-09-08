@@ -1,6 +1,6 @@
 
-// シーン内でボタンが押された時の行動定義関数
-lgb.button_scene_action_list = {
+// シーン+ボタンTypeが一致した時の行動定義関数
+lgb.button_scene_init_list = {
 	quest_go_opt: {
 		button_quest_list: 'setTextByUserData("quest_id")',
 		button_step: 'setTextByUserData("step")',
@@ -15,7 +15,7 @@ lgb.button_scene_action_list = {
 };
 
 // 上とほぼ同じ。↑の関数内で呼ばれる、行動関数
-lgb.button_action_list = {
+lgb.button_init_list = {
 	sub_text: {
 		quest_id: 'setSubTextQuestId()',
 		step: 'setSubTextStep()',
@@ -37,7 +37,7 @@ lgb.button_action_list = {
  */
 lgb.button = function(params){
 	this.position_x = params.x || 0;	// このオブジェクト自身の座標
-	this.position_y = params.y || 0;
+	this.position_y = (params.y || 0) + lgb.app.scene.getHeader().getRect().height;// 元のデータを逐一取得しているわけではないので、ボタンが自らHeader分移動する
 
 	this.title = params.title || "none title";
 	this.text = params.text || "none";
@@ -73,8 +73,8 @@ lgb.button = function(params){
 		this.canvas.addEventListener('mouseout', this.onOut, false);
 
 
-		if( lgb.app.getNowSceneType() in lgb.button_scene_action_list ){
-			eval( "this."+lgb.button_scene_action_list[lgb.app.getNowSceneType()][this.id]);
+		if( lgb.app.getNowSceneType() in lgb.button_scene_init_list ){
+			eval( "this."+lgb.button_scene_init_list[lgb.app.getNowSceneType()][this.id]);
 		}
 
 		this.isNotChangeScene = false;
@@ -147,11 +147,13 @@ lgb.button = function(params){
 		}
 		this.sub_text = "";
 
-		// lgb.button_action_list.sub_text のtype変数key 関数の実行
-		eval("this."+eval("lgb.button_action_list.sub_text."+type) );
+		// lgb.button_init_list.sub_text のtype変数key 関数の実行
+		eval("this."+eval("lgb.button_init_list.sub_text."+type) );
 	}
 
-	/* action func */
+	/** 
+	 * action func 
+	 **/
 
 	this.noneAction = function(){
 		// 何もしない

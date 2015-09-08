@@ -35,6 +35,7 @@ class Api extends CI_Controller {
 		$data = array(
 			'scene_menu' => array(
 				'sceneName' => 'メニュー',
+				'drawType' => 'none',
 				'buttons' => array(
 					array(
 						'params' => array(
@@ -61,6 +62,7 @@ class Api extends CI_Controller {
 			),
 			'scene_main' => array(
 				'sceneName' => 'メイン',
+				'drawType' => 'none',
 				'buttons' => array(
 					array(
 						'params' => array(
@@ -77,6 +79,7 @@ class Api extends CI_Controller {
 			),
 			'scene_quest' => array(
 				'sceneName' => 'クエスト',
+				'drawType' => 'none',
 				'buttons' => array(
 					array(
 						'params' => array(
@@ -92,6 +95,7 @@ class Api extends CI_Controller {
 			),
 			'scene_quest_go_opt' => array(
 				'sceneName' => 'クエスト出発',
+				'drawType' => 'none',
 				'buttons' => array(
 					array(
 						'params' => array(
