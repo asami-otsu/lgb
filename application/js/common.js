@@ -7,8 +7,9 @@ var lgb = {};
 // console.log(lgb.test_string);
 
 lgb.common = {
-	api_url: "http://192.168.56.10/index.php/Api/getButtons",
-//	api_url: "http://192.168.56.10/index.php/Test/menu",
+	api_button_url: "http://192.168.56.10/index.php/Api/getButtons",
+	api_test_button_url: "http://192.168.56.10/index.php/Test/menu",
+	api_user_url: "http://192.168.56.10/index.php/User/questGo",
 	title: "Let Go Braver!!!",
 };
 
@@ -55,8 +56,12 @@ lgb.ctx_init = function(ctx){
 };
 
 // canvas作成
-lgb.create_canvas = function(id, width, height, style){
-	$('#canvas').append('<canvas id='+id+' width="'+width+'" height="'+height+'" style="'+style+'" ></canvas>');
+lgb.create_canvas = function(id, class_name, width, height, style){
+	var class_ = '';
+	if( class_name != null ){
+		class_ = " class="+class_name+" ";
+	}
+	$('#canvas').append('<canvas id='+id+class_+' width="'+width+'" height="'+height+'" style="'+style+'" ></canvas>');
 };
 
 lgb.user = {
@@ -94,8 +99,24 @@ lgb.user = {
 			item_id_2: null,
 			time: null,
 			r_time: null,
+			log_id: null,
 		},
-	}
+	},
+	questGo: function(){
+		// phpと通信し、ユーザーデータを更新/クエスト処理の開始
+		var data = {
+			user_id: this.id,
+			quest_data: this.data.quest_select,
+		};
+		$.ajax({
+			type: "POST",
+			url: lgb.common.user_api,
+			data: data,
+			success: null,
+			dataType: "json",
+			async: false
+		});
+	},
 };
 
 lgb.master = {

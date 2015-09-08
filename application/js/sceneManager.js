@@ -21,7 +21,7 @@ lgb.sceneManager = function(){
 		// サーバーからデータ取得
 		var scenes = $.ajax({
 				type: "POST",
-				url: lgb.common.api_url, 
+				url: lgb.common.api_button_url, 
 				data: null, 
 				success: null, 
 				dataType: "json",

@@ -51,5 +51,9 @@ lgb.scene = function (nowType, nowTitle, buttons, drawType){
 	this.getType = function(){
 		return this.type;
 	};
+
+	this.getHeader = function(){
+		return this.objects[lgb.objectTypeList.HEADER];
+	};
 };
 

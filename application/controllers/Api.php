@@ -22,8 +22,8 @@ class Api extends CI_Controller {
 				'buttons' => array(
 					array(
 						'params' => array(
-							'x' => 1,
-							'y' => 1,
+							'x' => 0,
+							'y' => 0,
 							"text" => "hoge",
 							"nextScene" => "fuga",
 							'actionType' => 'none',
@@ -38,8 +38,8 @@ class Api extends CI_Controller {
 				'buttons' => array(
 					array(
 						'params' => array(
-							'x' => 1,
-							'y' => 35,
+							'x' => 0,
+							'y' => 0,
 							'id' => 'button_quest',
 							'text' => 'クエスト',
 							'nextScene' => 'quest',
@@ -49,7 +49,7 @@ class Api extends CI_Controller {
 					array(
 						'params' => array(
 							'x' => 1,
-							'y' => 70,
+							'y' => 30,
 							'id' => 'button_fuga',
 							'text' => 'fuga',
 							'nextScene' => 'main',
@@ -65,7 +65,7 @@ class Api extends CI_Controller {
 					array(
 						'params' => array(
 							'x' => 1,
-							'y' => 30,
+							'y' => 0,
 							'id' => 'button_fuga',
 							'text' => 'fuga',
 							'nextScene' => 'menu',
@@ -81,7 +81,7 @@ class Api extends CI_Controller {
 					array(
 						'params' => array(
 							'x' => 0,
-							'y' => 35,
+							'y' => 0,
 							'id' => 'button_quest_go_opt',
 							'text' => 'クエスト出発',
 							'nextScene' => 'quest_go_opt',
@@ -96,7 +96,7 @@ class Api extends CI_Controller {
 					array(
 						'params' => array(
 							'x' => 0,
-							'y' => 40,
+							'y' => 0,
 							'id' => 'button_quest_list',
 							'text' => 'クエスト選択',
 							'nextScene' => 'quest_list',
@@ -106,7 +106,7 @@ class Api extends CI_Controller {
 					array(
 						'params' => array(
 							'x' => 0,
-							'y' => 70,
+							'y' => 30,
 							'id' => 'button_step',
 							'text' => '目的階層選択',
 							'nextScene' => 'step',
@@ -116,7 +116,7 @@ class Api extends CI_Controller {
 					array(
 						'params' => array(
 							'x' => 0,
-							'y' => 100,
+							'y' => 60,
 							'id' => 'button_weapon',
 							'text' => '武器',
 							'nextScene' => 'weapon',
@@ -126,7 +126,7 @@ class Api extends CI_Controller {
 					array(
 						'params' => array(
 							'x' => 0,
-							'y' => 130,
+							'y' => 90,
 							'id' => 'button_armor',
 							'text' => '防具',
 							'nextScece' => 'armor',
@@ -136,7 +136,7 @@ class Api extends CI_Controller {
 					array(
 						'params' => array(
 							'x' => 0,
-							'y' => 160,
+							'y' => 120,
 							'id' => 'button_item_1',
 							'text' => 'アイテム1',
 							'nextScene' => 'item_list',
@@ -146,7 +146,7 @@ class Api extends CI_Controller {
 					array(
 						'params' => array(
 							'x' => 0,
-							'y' => 190,
+							'y' => 150,
 							'id' => 'button_item_2',
 							'text' => 'アイテム2',
 							'nextScene' => 'item_list',
@@ -156,7 +156,7 @@ class Api extends CI_Controller {
 					array(
 						'params' => array(
 							'x' => 0,
-							'y' => 220,
+							'y' => 180,
 							'id' => 'button_time',
 							'text' => '所要時間',
 							'nextScene' => 'none',
@@ -166,7 +166,7 @@ class Api extends CI_Controller {
 					array(
 						'params' => array(
 							'x' => 0,
-							'y' => 250,
+							'y' => 210,
 							'id' => 'button_result_time',
 							'text' => '期間予定時刻',
 							'nextScene' => 'none',
@@ -176,11 +176,11 @@ class Api extends CI_Controller {
 					array(
 						'params' => array(
 							'x' => 0,
-							'y' => 280,
+							'y' => 240,
 							'id' => 'button_go',
 							'text' => '出発',
-							'nextScene' => 'go',
-							'actionType' => 'quest_go',
+							'nextScene' => 'quest',
+							'actionType' => 'questGo',
 						),
 					),
 				),
@@ -192,8 +192,9 @@ class Api extends CI_Controller {
 					array(
 						'params' => array(
 							'x' => 0,
-							'y' => 35,
+							'y' => 0,
 							'id' => 'button_quest_1',
+							'title' => 'ダンジョン1',
 							'text' => 'クエスト1',
 							'nextScene' => 'quest_go_opt',
 							'actionType' => 'questSelect',

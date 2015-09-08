@@ -1,4 +1,5 @@
 
+// シーン内でボタンが押された時の行動定義関数
 lgb.button_scene_action_list = {
 	quest_go_opt: {
 		button_quest_list: 'setTextByUserData("quest_id")',
@@ -13,6 +14,7 @@ lgb.button_scene_action_list = {
 	},
 };
 
+// 上とほぼ同じ。↑の関数内で呼ばれる、行動関数
 lgb.button_action_list = {
 	sub_text: {
 		quest_id: 'setSubTextQuestId()',
@@ -23,9 +25,8 @@ lgb.button_action_list = {
 		item_id_2: 'setSubTextItemId2()',
 		time: 'setSubTextTime()',
 		r_time: 'setSubTextRTime()',
-		go: 'goAction()',
+		go: 'noneAction()',
 	},
-	
 };
 
 /**
@@ -47,6 +48,7 @@ lgb.button = function(params){
 	this.value = params.value || 0;
 	this.inOverMouse = false;
 	this.isSceneAction = false;
+	this.isNotChangeScene = false;
 
 	this.canvas = null;
 	this.ctx = null;
@@ -74,6 +76,8 @@ lgb.button = function(params){
 		if( lgb.app.getNowSceneType() in lgb.button_scene_action_list ){
 			eval( "this."+lgb.button_scene_action_list[lgb.app.getNowSceneType()][this.id]);
 		}
+
+		this.isNotChangeScene = false;
 	};
 
 	this.update = function(){
@@ -117,13 +121,8 @@ lgb.button = function(params){
 	};
 // }}}
 	this.onClick = function(e){
-		// すでにのっている状態
-
-		// 次のシーンに移る前にアクション関数実行
-		var actionName = "this.lgb_button."+this.lgb_button.actionType+"Action()";
-		eval (actionName);
-
-		lgb.app.setSceneType(this.lgb_button.nextScene);
+		// すでにのっている状態なので、実行
+		this.lgb_button.changeSceneAction();
 	};
 
 	this.onOver = function(e){
@@ -159,13 +158,125 @@ lgb.button = function(params){
 	};
 
 	this.questSelectAction = function(){
+		if( lgb.user.data.quest_select.quest_id != null &&
+			lgb.user.data.quest_select.quest_id == this.value){
+			// 同IDなら変更無し。
+			return ;
+		}
+		var master = lgb.master.quest[this.value];
 		lgb.user.data.quest_select.quest_id = this.value;
+		lgb.user.data.quest_select.step = 1;			// クエストの選択なので固定
+		lgb.user.data.quest_select.time = master.time;
+		lgb.user.data.quest_select.r_time = master.time;
+	};
+
+	this.stepSelectAction = function(){
+		if( lgb.user.data.quest_select.step != null &&
+			lgb.user.data.quest_select.step == this.value){
+			// 同stepなら変更無し。
+			return ;
+		}
+		lgb.user.data.quest_select.step = this.value;
+		lgb.user.data.quest_select.r_time = this.value * lgb.user.data.quest_select.time;
 	};
 
 	this.weaponSelectAction = function(){
 		lgb.user.data.quest_select.weapon_id = this.value;
 	};
 
+	this.armorSelectAction = function(){
+		lgb.user.data.quest_select.armor_id = this.value;
+	};
+
+	this.item1SelectAction = function(){
+		lgb.user.data.quest_select.item_id_1 = this.value;
+	};
+
+	this.item2SelectAction = function(){
+		lgb.user.data.quest_select.item_id_2 = this.value;
+	};
+
+	this.setSubTextQuestId = function(){
+		var quest_name = lgb.master.quest[lgb.user.data.quest_select.quest_id].name;
+		this.sub_text = quest_name;
+	};
+
+	this.setSubTextStep = function(){
+		var step = lgb.user.data.quest_select.step;
+		this.sub_text = "階層数: "+step;
+	};
+
+	this.setSubTextWeaponId = function(){
+		this.sub_text = "ぶき";
+	};
+
+	this.setSubTextArmorId = function(){
+		this.sub_text = "ぼうぐ";
+	};
+
+	this.setSubTextItemId1 = function(){
+		this.sub_text = "あいてむ１";
+	};
+
+	this.setSubTextItemId2 = function(){
+		this.sub_text = "あいてむ２";
+	};
+
+	this.setSubTextTime = function(){
+		var time = lgb.master.quest[lgb.user.data.quest_select.quest_id].time;
+		this.sub_text = time+"分";
+	};
+
+	this.setSubTextRTime = function(){
+		var time = lgb.master.quest[lgb.user.data.quest_select.quest_id].time;
+		var now = new Date();
+		var now_time = now.getTime();
+		var rtime = now_time + (time * 60 * 1000);
+		var d = new Date(rtime);
+		var yy = d.getFullYear();
+		var mm = d.getMonth() + 1;
+		var dd = d.getDate();
+		var hh = d.getHours();
+		var ii = d.getMinutes();
+		var ss = d.getSeconds();
+		if (mm < 10) { mm = "0" + mm; }
+		if (dd < 10) { dd = "0" + dd; }
+		if (hh < 10) { hh = "0" + hh; }
+		if (ii < 10) { ii = "0" + ii; }
+		if (ss < 10) { ss = "0" + ss; }
+
+		delete now;
+		delete d;
+		this.sub_text = yy+'/'+mm+'/'+dd+' '+hh+':'+ii+':'+ss;
+	};
+
+	// 出発アクション
+	this.questGoAction = function(){
+		var quest = lgb.user.data.quest_select;
+		if( quest.quest_id == null ){
+			this.isNotChangeScene = true;
+			alert('クエストが選択されていません...!');
+			return ;
+		}
+		// ユーザーデータ更新
+		///lgb.user.questGo();
+	};
+
+	// シーン切り替え処理
+	this.changeSceneAction = function(){
+		// 次のシーンに移る前にアクション関数実行
+		var action = "this."+this.actionType+"Action()";
+		eval(action);
+
+		if( this.nextScene == "none" ){
+			alert('このボタンはクリックしても反応しません。');
+			return ;
+		}
+		if( this.isNotChangeScene ){
+			return ;
+		}
+		lgb.app.setSceneType(this.nextScene);
+	};
 
 	this.setSubTextQuestId = function(){
 		var quest_name = lgb.master.quest[lgb.user.data.quest_select.quest_id].name;
@@ -205,7 +316,11 @@ lgb.button = function(params){
 
 	// canvasに自分要素用のcanvas作成
 	var style = "background-color: #0ff; left: "+this.position_x+"px; top:"+this.position_y+"px;";
+<<<<<<< HEAD
+	lgb.create_canvas(this.id, 'canvas_button', this.width, this.height, style);
+=======
 	lgb.create_canvas(this.id, this.width, this.height, style);
+>>>>>>> master
 };
 
 /**
