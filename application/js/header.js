@@ -12,12 +12,6 @@ lgb.header = function(type, title){
 	this.ctx = null;
 
 	this.init = function(){
-		this.canvas = $('#'+this.getId()).get(0);
-		if( this.canvas.getContext ){
-			this.ctx = this.canvas.getContext('2d');
-			lgb.init(this.ctx);
-		}
-		this.c_rect = $(this.canvas).offset();
 	};
 
 	this.update = function(){
@@ -52,6 +46,18 @@ lgb.header = function(type, title){
 		return 'header_'+this.sceneType;
 	};
 
-	lgb.create_canvas(this.getId(), 400, 30, "background-color: #4033d2; left: 0px; top: 0px");
+	this.getRect = function(){
+		return this.c_rect;
+	};
+
+	lgb.create_canvas(this.getId(), 'canvas_header', 400, 30, "background-color: #4033d2; left: 0px; top: 0px");
+	this.canvas = $('#'+this.getId()).get(0);
+	if( this.canvas.getContext ){
+		this.ctx = this.canvas.getContext('2d');
+		lgb.init(this.ctx);
+	}
+	this.c_rect = $(this.canvas).offset();
+	this.c_rect.height = this.canvas.height;
+	this.c_rect.width = this.canvas.width;
 };
 

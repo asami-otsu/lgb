@@ -280,7 +280,7 @@ lgb.button = function(params){
 
 	// canvasに自分要素用のcanvas作成
 	var style = "background-color: #0ff; left: "+this.position_x+"px; top:"+this.position_y+"px;";
-	lgb.create_canvas(this.id, this.width, this.height, style);
+	lgb.create_canvas(this.id, 'canvas_button', this.width, this.height, style);
 };
 
 /**

@@ -56,8 +56,12 @@ lgb.ctx_init = function(ctx){
 };
 
 // canvas作成
-lgb.create_canvas = function(id, width, height, style){
-	$('#canvas').append('<canvas id='+id+' width="'+width+'" height="'+height+'" style="'+style+'" ></canvas>');
+lgb.create_canvas = function(id, class_name, width, height, style){
+	var class_ = '';
+	if( class_name != null ){
+		class_ = " class="+class_name+" ";
+	}
+	$('#canvas').append('<canvas id='+id+class_+' width="'+width+'" height="'+height+'" style="'+style+'" ></canvas>');
 };
 
 lgb.user = {
