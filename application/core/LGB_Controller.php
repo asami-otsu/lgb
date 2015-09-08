@@ -1,4 +1,7 @@
 <?php
+require_once(APPPATH.'libraries/IndexData.php');
+require_once(APPPATH.'libraries/MasterData.php');
+require_once(APPPATH.'libraries/UserData.php');
 
 class LGB_Controller extends CI_Controller{
 
