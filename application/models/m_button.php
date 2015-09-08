@@ -4,10 +4,10 @@ class M_Button extends LGB_Model {
 	/**
 	 * scene_type
 	 */
-	const SCENE_TYPE_QUEST_SELECT = 'scene_quest_select';
-	const SCENE_TYPE_WEAPON_SELECT = 'scene_weapon_select';
-	const SCENE_TYPE_ARMOR_SELECT = 'scene_armor_select';
-	const SCENE_TYPE_ITEM_SELECT = 'scene_item_seclec';
+	const SCENE_TYPE_QUEST_LIST = 'scene_quest_list';
+	const SCENE_TYPE_WEAPON_LIST = 'scene_weapon_list';
+	const SCENE_TYPE_ARMOR_LIST = 'scene_armor_list';
+	const SCENE_TYPE_ITEM_LIST = 'scene_item_list';
 
 	/**
 	 * sub_text

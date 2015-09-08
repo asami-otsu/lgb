@@ -1,8 +1,5 @@
 <?php
 require_once(APPPATH.'libraries/REST_Controller.php');
-require_once(APPPATH.'libraries/IndexData.php');
-require_once(APPPATH.'libraries/MasterData.php');
-require_once(APPPATH.'libraries/UserData.php');
 
 class Test extends LGB_Controller {
 

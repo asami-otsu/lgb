@@ -3,8 +3,10 @@ class UserData extends CI_Controller {
 
 	/**
 	 * ユーザの情報取得
+	 * @param int 
+	 * @return array
 	 */
-	function get_user ( $user_id = 1) {
+	function getUser ( $user_id = 1) {
 		$data = array();
 
 		$this->load->model('user', 'user');
@@ -27,6 +29,30 @@ class UserData extends CI_Controller {
 		return $data;
 	}
 
+	/**
+	 * クエスト出発状態に更新
+	 *
+	 * @param array
+	 * @param array
+	 * @return
+	 */
+	function userQuestGo($user_id, $quest_data) {
+		$this->load->model('user', 'user');
+		$this->load->model('log_quest', 'log_quest');
 
+		$this->db->trans_begin();
+		$this->user->update($user_id, array('status' => User::USER_STATUS_GO, 'modified' => $this->user->now()));
+		// TODO ログつくる
+
+		if ($this->db->trans_status() === FALSE) {
+			log_message('更新に失敗しました');
+			$this->db->trans_rollback();
+			return FALSE;
+		} else {
+			$this->db->trans_commit();
+		}
+
+		return TRUE;
+	}
 }
 
