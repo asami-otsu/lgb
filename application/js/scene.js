@@ -77,19 +77,32 @@ lgb.scene = function (nowType, nowTitle, buttons, drawType){
 	};
 
 	this.getQuestAction = function(){
+		var user_data = {};
+		var data = lgb.getApi(lgb.common.api_user_quest_url, user_data);
+
+		this.buttons = data;
 		
 	};
 
 	this.getWeaponAction = function(){
-		
+		var user_data = {};
+		var data = lgb.getApi(lgb.common.api_user_weapon_url, user_data);
+
+		this.buttons = data;
 	};
 	
 	this.getArmorAction = function(){
-		
+		var user_data = {};
+		var data = lgb.getApi(lgb.common.api_user_armor_url, user_data);
+
+		this.buttons = data;
 	};
 
 	this.getItemAction = function(){
-		
+		var user_data = {};
+		var data = lgb.getApi(lgb.common.api_user_armor_url, user_data);
+
+		this.buttons = data;
 	};
 };
 

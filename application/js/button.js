@@ -198,6 +198,10 @@ lgb.button = function(params){
 		lgb.user.data.quest_select.item_id_2 = this.value;
 	};
 
+
+	/**
+	 * setSubText
+	 **/
 	this.setSubTextQuestId = function(){
 		var quest_name = lgb.master.quest[lgb.user.data.quest_select.quest_id].name;
 		this.sub_text = quest_name;
@@ -209,19 +213,23 @@ lgb.button = function(params){
 	};
 
 	this.setSubTextWeaponId = function(){
-		this.sub_text = "ぶき";
+		var weapon_name = lgb.master.weapon[lgb.user.data.quest_select.weapon_id].name;
+		this.sub_text = weapon_name;
 	};
 
 	this.setSubTextArmorId = function(){
-		this.sub_text = "ぼうぐ";
+		var armor_name = lgb.master.armor[lgb.user.data.quest_select.armor_id].name;
+		this.sub_text = armor_name;
 	};
 
 	this.setSubTextItemId1 = function(){
-		this.sub_text = "あいてむ１";
+		var item_name = lgb.master.item[lgb.user.data.quest_select.item_id_1].name;
+		this.sub_text = item_name;
 	};
 
 	this.setSubTextItemId2 = function(){
-		this.sub_text = "あいてむ２";
+		var item_name = lgb.master.item[lgb.user.data.quest_select.item_id_2].name;
+		this.sub_text = item_name;
 	};
 
 	this.setSubTextTime = function(){
@@ -261,7 +269,8 @@ lgb.button = function(params){
 			return ;
 		}
 		// ユーザーデータ更新
-		///lgb.user.questGo();
+		console.log("questGo buttonAction");
+		lgb.user.questGo();
 	};
 
 	// シーン切り替え処理
@@ -279,42 +288,6 @@ lgb.button = function(params){
 		}
 		lgb.app.setSceneType(this.nextScene);
 	};
-
-	this.setSubTextQuestId = function(){
-		var quest_name = lgb.master.quest[lgb.user.data.quest_select.quest_id].name;
-		this.sub_text = quest_name;
-	};
-
-	this.setSubTextStep = function(){
-		this.sub_text = "階層数";
-	}
-
-	this.setSubTextWeaponId = function(){
-		this.sub_text = "ぶき";
-	}
-
-	this.setSubTextArmorId = function(){
-		this.sub_text = "ぼうぐ";
-	}
-	this.setSubTextItemId1 = function(){
-		this.sub_text = "あいてむ１";
-	}
-
-	this.setSubTextItemId2 = function(){
-		this.sub_text = "あいてむ２";
-	}
-
-	this.setSubTextTime = function(){
-		this.sub_text = "じかん";
-	}
-
-	this.setSubTextRTime = function(){
-		this.sub_text = "きかんじこく";
-	}
-
-	this.goAction = function(){
-		this.sub_text = "";
-	}
 
 	// canvasに自分要素用のcanvas作成
 	var style = "background-color: #0ff; left: "+this.position_x+"px; top:"+this.position_y+"px;";
