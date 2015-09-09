@@ -33,7 +33,7 @@ class LGB_Model extends CI_Model {
 	 */
 	public function insert() {
 		$now = $this->now();
-		$this->db->set(array('created_at' => $now, 'updated_at' => $now));
+		$this->db->set(array('created' => $now, 'modified' => $now));
 		$ret = $this->db->insert($this->_table, $this);
 		if ($ret === FALSE) {
 			return FALSE;

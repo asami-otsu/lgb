@@ -54,5 +54,25 @@ class UserData extends CI_Controller {
 
 		return TRUE;
 	}
+
+	/**
+	 * ログインできるか
+	 */
+	public function userLoginValidate($user_name, $passwd){
+		$this->load->model('user', 'user');
+		$user = $this->user->find($user_name);
+		if (empty($user){
+			// 新規作成
+			$this->user->create($user_id, $passwd);
+			return true;
+		}elseif ($user['passwd'] == $passwd){
+			// 正常ログインできます。
+			return true;
+		}
+
+		// パスワードを間違えている。
+		log_message('ユーザーIDとパスワードが一致しません。');
+		return false;
+	}
 }
 

@@ -15,8 +15,28 @@ var lgb = {};
 lgb.common = {
 	api_button_url: "http://192.168.56.10/index.php/Api/getButtons",
 	api_test_button_url: "http://192.168.56.10/index.php/Test/menu",
+	api_send_user_login_url: "http://192.168.56.10/index.php/Users/login";
 	api_user_quest_go_url: "http://192.168.56.10/index.php/Users/questGo",
 	title: "Let Go Braver!!!",
+};
+
+lgb.sendUserLogin = function(user_id, passwd){
+	var data = {
+		user_id: user_id,
+		passwd: passwd
+	};
+	// Apiへsend
+	var user = $.ajax({
+		type: "POST",
+		url: lgb.api_user_login_url,
+		cache: true,
+		dataType: "json",
+		success: function(){},
+		error: function(){},
+		data: params
+	});
+
+	return true;
 };
 
 // コールバック関数で処理

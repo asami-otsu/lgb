@@ -5,7 +5,8 @@ for (var i = 0; i < lgb.js_urls.length; i++){
 }
 
 // main の部分の処理
-onload = function (){
+//onload = function (){
+lgb.main = function(){
 	// 初期化とmain
 	canvas = $('#main').get(0);
 	if( ! canvas.getContext ) {
