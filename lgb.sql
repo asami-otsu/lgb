@@ -11,11 +11,13 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
 -- Dumping database structure for lgb_local
+DROP DATABASE IF EXISTS `lgb_local`;
 CREATE DATABASE IF NOT EXISTS `lgb_local` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `lgb_local`;
 
 
 -- Dumping structure for テーブル lgb_local.log_quest
+DROP TABLE IF EXISTS `log_quest`;
 CREATE TABLE IF NOT EXISTS `log_quest` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) DEFAULT '0',
@@ -33,6 +35,7 @@ CREATE TABLE IF NOT EXISTS `log_quest` (
 
 
 -- Dumping structure for テーブル lgb_local.log_quest_event
+DROP TABLE IF EXISTS `log_quest_event`;
 CREATE TABLE IF NOT EXISTS `log_quest_event` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `log_quest_id` int(11) NOT NULL DEFAULT '0',
@@ -51,6 +54,7 @@ CREATE TABLE IF NOT EXISTS `log_quest_event` (
 
 
 -- Dumping structure for テーブル lgb_local.m_button
+DROP TABLE IF EXISTS `m_button`;
 CREATE TABLE IF NOT EXISTS `m_button` (
   `id` int(11) NOT NULL DEFAULT '0',
   `scene_type` varchar(32) DEFAULT NULL,
@@ -71,7 +75,7 @@ CREATE TABLE IF NOT EXISTS `m_button` (
   KEY `scene_type` (`scene_type`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Dumping data for table lgb_local.m_button: ~25 rows (approximately)
+-- Dumping data for table lgb_local.m_button: ~26 rows (approximately)
 /*!40000 ALTER TABLE `m_button` DISABLE KEYS */;
 INSERT INTO `m_button` (`id`, `scene_type`, `name`, `text`, `sub_text`, `tag_id`, `x`, `y`, `width`, `height`, `next_scene`, `action_type`, `value`, `created`, `modified`) VALUES
 	(1, 'scene_menu', 'クエスト', 'クエストを始めたりログを確認します', 'none', 'button_quest', 0, 0, 400, 30, 'quest', 'none', 'none', '2015-09-01 16:32:05', '2015-09-01 16:32:05'),
@@ -104,6 +108,7 @@ INSERT INTO `m_button` (`id`, `scene_type`, `name`, `text`, `sub_text`, `tag_id`
 
 
 -- Dumping structure for テーブル lgb_local.m_event
+DROP TABLE IF EXISTS `m_event`;
 CREATE TABLE IF NOT EXISTS `m_event` (
   `id` int(11) NOT NULL DEFAULT '0',
   `type` int(11) NOT NULL DEFAULT '0',
@@ -127,6 +132,7 @@ INSERT INTO `m_event` (`id`, `type`, `message`, `param`, `created`, `modified`) 
 
 
 -- Dumping structure for テーブル lgb_local.m_item
+DROP TABLE IF EXISTS `m_item`;
 CREATE TABLE IF NOT EXISTS `m_item` (
   `id` int(11) NOT NULL DEFAULT '0',
   `type` int(11) DEFAULT '0',
@@ -143,7 +149,7 @@ CREATE TABLE IF NOT EXISTS `m_item` (
   KEY `idx_m_item` (`type`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Dumping data for table lgb_local.m_item: ~12 rows (approximately)
+-- Dumping data for table lgb_local.m_item: ~13 rows (approximately)
 /*!40000 ALTER TABLE `m_item` DISABLE KEYS */;
 INSERT INTO `m_item` (`id`, `type`, `rarity`, `name`, `note`, `param`, `set_item_id`, `buy_price`, `add_price`, `created`, `modified`) VALUES
 	(1001, 1, 1, 'ひのきのぼう', '初期装備はこれで', 5, 0, 100, 10, '2015-09-01 17:00:46', '2015-09-01 17:00:46'),
@@ -163,6 +169,7 @@ INSERT INTO `m_item` (`id`, `type`, `rarity`, `name`, `note`, `param`, `set_item
 
 
 -- Dumping structure for テーブル lgb_local.m_monster
+DROP TABLE IF EXISTS `m_monster`;
 CREATE TABLE IF NOT EXISTS `m_monster` (
   `id` int(11) NOT NULL DEFAULT '0',
   `name` varchar(32) NOT NULL,
@@ -209,6 +216,7 @@ INSERT INTO `m_monster` (`id`, `name`, `attack`, `defense`, `hp`, `hit`, `dex`, 
 
 
 -- Dumping structure for テーブル lgb_local.m_quest
+DROP TABLE IF EXISTS `m_quest`;
 CREATE TABLE IF NOT EXISTS `m_quest` (
   `id` int(11) NOT NULL DEFAULT '0',
   `name` varchar(32) NOT NULL,
@@ -234,6 +242,7 @@ INSERT INTO `m_quest` (`id`, `name`, `floor_max`, `floor_time`, `before_quest_id
 
 
 -- Dumping structure for テーブル lgb_local.m_quest_event
+DROP TABLE IF EXISTS `m_quest_event`;
 CREATE TABLE IF NOT EXISTS `m_quest_event` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `quest_id` int(11) NOT NULL DEFAULT '0',
@@ -277,6 +286,7 @@ INSERT INTO `m_quest_event` (`id`, `quest_id`, `floor_id`, `event_id`, `rate`, `
 
 
 -- Dumping structure for テーブル lgb_local.m_quest_item
+DROP TABLE IF EXISTS `m_quest_item`;
 CREATE TABLE IF NOT EXISTS `m_quest_item` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `quest_id` int(11) NOT NULL DEFAULT '0',
@@ -306,6 +316,7 @@ INSERT INTO `m_quest_item` (`id`, `quest_id`, `floor_num`, `item_id`, `amount`, 
 
 
 -- Dumping structure for テーブル lgb_local.m_quest_monster
+DROP TABLE IF EXISTS `m_quest_monster`;
 CREATE TABLE IF NOT EXISTS `m_quest_monster` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `quest_id` int(11) NOT NULL DEFAULT '0',
@@ -335,6 +346,7 @@ INSERT INTO `m_quest_monster` (`id`, `quest_id`, `floor_num`, `monster_id`, `lv`
 
 
 -- Dumping structure for テーブル lgb_local.m_scene
+DROP TABLE IF EXISTS `m_scene`;
 CREATE TABLE IF NOT EXISTS `m_scene` (
   `id` int(11) NOT NULL,
   `name` varchar(32) DEFAULT NULL,
@@ -363,6 +375,7 @@ INSERT INTO `m_scene` (`id`, `name`, `draw_type`, `scene_type`, `back_scene`, `c
 
 
 -- Dumping structure for テーブル lgb_local.m_shop
+DROP TABLE IF EXISTS `m_shop`;
 CREATE TABLE IF NOT EXISTS `m_shop` (
   `id` int(11) NOT NULL DEFAULT '0',
   `item_id` int(11) NOT NULL DEFAULT '0',
@@ -390,6 +403,7 @@ INSERT INTO `m_shop` (`id`, `item_id`, `created`, `modified`) VALUES
 
 
 -- Dumping structure for テーブル lgb_local.user
+DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(16) NOT NULL DEFAULT '0',
@@ -409,6 +423,7 @@ INSERT INTO `user` (`id`, `name`, `password`, `status`, `money`, `created`, `mod
 
 
 -- Dumping structure for テーブル lgb_local.user_item
+DROP TABLE IF EXISTS `user_item`;
 CREATE TABLE IF NOT EXISTS `user_item` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL DEFAULT '0',
@@ -422,7 +437,7 @@ CREATE TABLE IF NOT EXISTS `user_item` (
   KEY `idx_user_item` (`user_id`,`item_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
--- Dumping data for table lgb_local.user_item: ~2 rows (approximately)
+-- Dumping data for table lgb_local.user_item: ~3 rows (approximately)
 /*!40000 ALTER TABLE `user_item` DISABLE KEYS */;
 INSERT INTO `user_item` (`id`, `user_id`, `item_id`, `lv`, `quantity`, `status`, `created`, `modified`) VALUES
 	(1, 1, 1001, 1, 1, 0, '2015-09-07 20:06:57', '2015-09-07 20:06:59'),
@@ -432,6 +447,7 @@ INSERT INTO `user_item` (`id`, `user_id`, `item_id`, `lv`, `quantity`, `status`,
 
 
 -- Dumping structure for テーブル lgb_local.user_quest
+DROP TABLE IF EXISTS `user_quest`;
 CREATE TABLE IF NOT EXISTS `user_quest` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL DEFAULT '0',
