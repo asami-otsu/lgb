@@ -1,4 +1,10 @@
 
+/* library */
+String.prototype.capitalizeFirstLetter = function() {
+    return this.charAt(0).toUpperCase() + this.slice(1);
+}
+
+
 /* js 呼び出し元設定資料 */
 
 var lgb = {};
@@ -9,14 +15,34 @@ var lgb = {};
 lgb.common = {
 	api_button_url: "http://192.168.56.10/index.php/Api/getButtons",
 	api_test_button_url: "http://192.168.56.10/index.php/Test/menu",
-	api_user_url: "http://192.168.56.10/index.php/User/questGo",
+	api_send_user_login_url: "http://192.168.56.10/index.php/Users/login";
+	api_user_quest_go_url: "http://192.168.56.10/index.php/Users/questGo",
 	title: "Let Go Braver!!!",
+};
+
+lgb.sendUserLogin = function(user_id, passwd){
+	var data = {
+		user_id: user_id,
+		passwd: passwd
+	};
+	// Apiへsend
+	var user = $.ajax({
+		type: "POST",
+		url: lgb.api_user_login_url,
+		cache: true,
+		dataType: "json",
+		success: function(){},
+		error: function(){},
+		data: params
+	});
+
+	return true;
 };
 
 // コールバック関数で処理
 lgb.ajax = function (callback, params, url){
 	var url = url || lgb.common.api_url;
-	var params = params || [];
+	var params = params || null;
 
 	var res = $.ajax({
 		type: "POST",
@@ -33,6 +59,23 @@ lgb.ajax = function (callback, params, url){
 		data: params
 		});
 
+	return res;
+};
+
+lgb.getApi = function(url, params, callback){
+	var url = url || lgb.common.api_url;
+	var params = params || null;
+	var callback = callback || null;
+
+	var res = $.ajax({
+			type: "POST",
+			url: url,
+			cache: false,
+			dataType: "json",
+			success: callback,
+			error: function(){},
+			data: params
+		});
 	return res;
 };
 
@@ -106,11 +149,11 @@ lgb.user = {
 		// phpと通信し、ユーザーデータを更新/クエスト処理の開始
 		var data = {
 			user_id: this.id,
-			quest_data: this.data.quest_select,
+			quest_select: this.data.quest_select,
 		};
 		$.ajax({
 			type: "POST",
-			url: lgb.common.user_api,
+			url: lgb.common.api_user_quest_go_url,
 			data: data,
 			success: null,
 			dataType: "json",

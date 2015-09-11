@@ -22,5 +22,23 @@ class Users extends LGB_Controller {
 		exit;
 	}
 
+	/**
+	 * ログインバリデート
+	 */
+	public function login(){
+		$data = array();
+
+		$user_id = $this->input->get_post('user_id', TRUE);
+		$passwd = $this->input->get_post('passwd', TRUE);
+
+		$userData = new UserData();
+		$isLogin = $userData->userLoginValidate($user_id, $passwd);
+
+		$data = $isLogin;
+
+		$this->output->set_output(json_encode($data));
+		$this->output->_display();
+		exit;
+	}
 
 }

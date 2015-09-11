@@ -35,6 +35,7 @@ class Api extends CI_Controller {
 		$data = array(
 			'scene_menu' => array(
 				'sceneName' => 'メニュー',
+				'drawType' => 'none',
 				'buttons' => array(
 					array(
 						'params' => array(
@@ -61,6 +62,7 @@ class Api extends CI_Controller {
 			),
 			'scene_main' => array(
 				'sceneName' => 'メイン',
+				'drawType' => 'none',
 				'buttons' => array(
 					array(
 						'params' => array(
@@ -77,6 +79,7 @@ class Api extends CI_Controller {
 			),
 			'scene_quest' => array(
 				'sceneName' => 'クエスト',
+				'drawType' => 'none',
 				'buttons' => array(
 					array(
 						'params' => array(
@@ -92,6 +95,7 @@ class Api extends CI_Controller {
 			),
 			'scene_quest_go_opt' => array(
 				'sceneName' => 'クエスト出発',
+				'drawType' => 'none',
 				'buttons' => array(
 					array(
 						'params' => array(
@@ -202,6 +206,44 @@ class Api extends CI_Controller {
 						),
 					),
 				),
+			),
+		);
+
+		$this->output->set_output(json_encode($data));
+		$this->output->_display();
+		exit;
+	}
+
+	public function getButtonsWeapon(){
+		$data = array(
+			1 => array(
+				'id' => 1,
+				'name' => 'hoge武器',
+				'value' => 1,
+			),
+			2 => array(
+				'id' => 2,
+				'name' => 'fugaぶき',
+				'value' => 4,
+			),
+		);
+
+		$this->output->set_output(json_encode($data));
+		$this->output->_display();
+		exit;
+	}
+
+	public function getButtonsArmor(){
+		$data = array(
+			1 => array(
+				'id' => 1,
+				'name' => 'hogeぼうぐ',
+				'value' => 2,
+			),
+			2 => array(
+				'id' => 2,
+				'name' => 'fugaぼうぐ',
+				'value' => 5,
 			),
 		);
 

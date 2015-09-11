@@ -9,10 +9,7 @@ lgb.buttonManager = function(buttons, drawType, actionType){
 
 	this.drawType = drawType || "none";
 
-	var header = lgb.app.scene.getHeader();
-	var header_rect = header.getRect();
 	for ( var b of this.buttonsData ){
-		b.params.y += header_rect.height;
 		this.buttonList.push( new lgb.button(b.params) );
 	}	
 
