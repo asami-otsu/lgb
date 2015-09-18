@@ -79,7 +79,7 @@ class IndexData extends CI_Controller {
 
 			switch ( $button['scene_type'] ) {
 
-				case M_Button::SCENE_TYPE_QUEST_LIST:
+				case M_button::SCENE_TYPE_QUEST_LIST:
 					// クエスト情報
 					$this->load->model('m_quest', 'm_quest');
 					$mst = $this->m_quest->find_all();
@@ -89,19 +89,19 @@ class IndexData extends CI_Controller {
 
 					break;
 
-				case M_Button::SCENE_TYPE_WEAPON_LIST:
+				case M_button::SCENE_TYPE_WEAPON_LIST:
 					// 武器情報
 					$mst = $this->user_item->get_item_list($this->_user_items, $this->_items, 1);
 
 					break;
 
-				case M_Button::SCENE_TYPE_ARMOR_LIST:
+				case M_button::SCENE_TYPE_ARMOR_LIST:
 					// 防具情報
 					$mst = $this->user_item->get_item_list($this->_user_items, $this->_items, 2);
 
 					break;
 
-				case M_Button::SCENE_TYPE_ITEM_LIST:
+				case M_button::SCENE_TYPE_ITEM_LIST:
 					// アイテム情報
 					$mst = $this->user_item->get_item_list($this->_user_items, $this->_items, 3);
 
@@ -128,7 +128,7 @@ class IndexData extends CI_Controller {
 		$value = empty($value)? $button : $value;
 
 		// sub_text作る？
-		if ($button['sub_text'] == M_Button::SUB_TEXT_GET_VALUE) {
+		if ($button['sub_text'] == M_button::SUB_TEXT_GET_VALUE) {
 			$button['sub_text'] = $this->getSubTextValue($button['action_type']);
 		}
 			
