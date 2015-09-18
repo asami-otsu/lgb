@@ -1,9 +1,15 @@
 <?php
 
-class Login_Controller extends LGB_Controller{
+class Login extends LGB_Controller{
+
+	public function __construct(){
+		parent::__construct();
+	}
 	
 	public function login(){
-		
+		$this->setViewName('login');
+		$this->setData(array());
+		$this->loadView();
 	}
 
 	public function loginValidate(){
@@ -24,11 +30,9 @@ class Login_Controller extends LGB_Controller{
 			redirect('Login/login');
 		}
 
-		$data = $user;
+		$data['data'] = $user['id'];
 
-		$this->setViewName('Mains/index');
-		$this->setData($data);
-		$this->loadView();
+		$this->load->view( 'Mains/index', $data );
 	}
 }
 

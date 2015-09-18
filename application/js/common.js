@@ -15,40 +15,9 @@ var lgb = {};
 lgb.common = {
 	api_button_url: "http://192.168.56.10/index.php/Api/getButtons",
 	api_test_button_url: "http://192.168.56.10/index.php/Test/menu",
-	api_send_user_login_url: "http://192.168.56.10/index.php/Users/login",
+	api_get_user_data_url: "http://192.168.56.10/index.php/Users/getUserData",
 	api_user_quest_go_url: "http://192.168.56.10/index.php/Users/questGo",
 	title: "Let Go Braver!!!",
-};
-
-lgb.sendUserLogin = function(user_name, passwd){
-	var data = {
-		user_name: user_name,
-		passwd: passwd
-	};
-	// Apiへsend
-	var res = $.ajax({
-		type: "POST",
-		url: lgb.common.api_send_user_login_url,
-		dataType: "json",
-		rsync: false,
-		data: data,
-		success: function(response){
-			console.log(response);
-//			lgb.user = respon
-		},
-	});
-console.log(res.readyState);
-console.log(res.statusText);
-	var user = res.responseText;
-console.log(user);
-
-	if( !(user.id > 0) ){
-		return false;
-	}
-	// ユーザーデータをここで取得しておく
-	lgb.user = user;
-
-	return true;
 };
 
 // コールバック関数で処理

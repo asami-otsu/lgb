@@ -12,7 +12,7 @@ class UserData extends CI_Controller {
 		$this->load->model('user', 'user');
 		$user = $this->user->find($user_id);
 		if (empty($user)) {
-			log_message('ユーザが見つかりません。user_id:'. $user_id);
+			log_message('info', 'ユーザが見つかりません。user_id:'. $user_id);
 		}
 		$data['id'] = $user_id;
 		$data['money'] = $user['money'];
