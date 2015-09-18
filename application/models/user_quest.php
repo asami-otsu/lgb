@@ -1,5 +1,5 @@
 <?php
-class User_Quest extends LGB_Model {
+class User_quest extends LGB_Model {
 
 
 }
