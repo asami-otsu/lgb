@@ -1,5 +1,5 @@
 <?php
-class M_Button extends LGB_Model {
+class M_button extends LGB_Model {
 
 	/**
 	 * scene_type
