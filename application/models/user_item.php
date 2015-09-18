@@ -1,5 +1,9 @@
 <?php
 class User_item extends LGB_Model {
+	const STATUS_GET = 0;
+	const STATUS_NEW = 1;
+	const STATUS_SELL = 2;
+	const STATUS_LOST = 3;
 
 	/**
 	 * アイテムリストを抽出
@@ -28,4 +32,5 @@ class User_item extends LGB_Model {
 
 		return $data;
 	}
+
 }

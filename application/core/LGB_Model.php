@@ -111,6 +111,17 @@ class LGB_Model extends CI_Model {
 	}
 
 	/**
+	 * get
+	 *
+	 * @param array
+	 * @return array
+	 */
+	public function get($where) {
+		$ret = $this->db->where($where)->get($this->_table)->row_array();
+		return $ret;
+	}
+
+	/**
 	 * now
 	 * 
 	 * @return string
