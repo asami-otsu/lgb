@@ -28,10 +28,9 @@ class Users extends LGB_Controller {
 	 * @return array (user data)
 	 */
 	public function getUserData(){
-log_message("debug", "hoge");
 		$user_id = $this->input->get_post('id', TRUE);
 		$user_data = new UserData();
-		$data = $userData->getUser($user_id);
+		$data = $user_data->getUser($user_id);
 
 		$this->output->set_output(json_encode($data));
 		$this->output->_display();
