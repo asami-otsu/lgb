@@ -11,17 +11,16 @@ class User extends LGB_Model {
 
 	public function create($name, $passwd){
 		$now = $this->now();
-		$this->db->set(array(
-				'name' => $name, 
-				'passwd' => $passwd, 
-				'created' => $now, 
-				'modified' => $now
-		);
-		$ret = $this->db->insert($this->_table, $this);
+		$this->name = $name;
+		$this->password = $passwd;
+		$ret = $this->insert();
 		if( $ret === FALSE){
+			log_message('error', 'ユーザーデータの作成に失敗しました。');
 			return FALSE;
 		}
-		return $this->db->insert_id();
+		log_message('debug', 'ユーザーデータの作成に成功しました。');
+		return true;
 	}
 	
 }
+

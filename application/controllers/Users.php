@@ -28,13 +28,22 @@ class Users extends LGB_Controller {
 	public function login(){
 		$data = array();
 
-		$user_id = $this->input->get_post('user_id', TRUE);
+		$user_name = $this->input->get_post('user_name', TRUE);
 		$passwd = $this->input->get_post('passwd', TRUE);
 
 		$userData = new UserData();
-		$isLogin = $userData->userLoginValidate($user_id, $passwd);
+		$isLogin = $userData->userLoginValidate($user_name, $passwd);
 
-		$data = $isLogin;
+		$user = array();
+		if( $isLogin ){
+			$user = $userData->getUserByName($user_name);
+			log_message('debug', 'ログインに成功しているようです。');
+		}else{
+			$user['id'] = 0;
+			log_message('debug', 'ログインに失敗しているようです。');
+		}
+
+		$data = $user;
 
 		$this->output->set_output(json_encode($data));
 		$this->output->_display();

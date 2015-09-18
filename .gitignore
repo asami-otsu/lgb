@@ -1,4 +1,4 @@
-/logs
+application/logs
 /var
 *.swp
 *.swo
