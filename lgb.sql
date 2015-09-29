@@ -27,10 +27,16 @@ CREATE TABLE IF NOT EXISTS `log_quest` (
   `modified` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `idx_log_quest` (`quest_id`,`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
--- Dumping data for table lgb_local.log_quest: ~0 rows (approximately)
+-- Dumping data for table lgb_local.log_quest: ~4 rows (approximately)
 /*!40000 ALTER TABLE `log_quest` DISABLE KEYS */;
+INSERT INTO `log_quest` (`id`, `user_id`, `quest_id`, `result`, `created`, `modified`) VALUES
+	(1, 0, 0, 0, '2015-09-09 18:46:02', '2015-09-09 18:46:02'),
+	(2, 1, 0, 0, '2015-09-09 18:48:40', '2015-09-09 18:48:40'),
+	(3, 1, NULL, 0, '2015-09-09 18:49:43', '2015-09-09 18:49:43'),
+	(4, 1, NULL, 0, '2015-09-09 18:50:52', '2015-09-09 18:50:52'),
+	(5, 1, NULL, 0, '2015-09-09 18:51:16', '2015-09-09 18:51:16');
 /*!40000 ALTER TABLE `log_quest` ENABLE KEYS */;
 
 
@@ -75,7 +81,7 @@ CREATE TABLE IF NOT EXISTS `m_button` (
   KEY `scene_type` (`scene_type`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Dumping data for table lgb_local.m_button: ~26 rows (approximately)
+-- Dumping data for table lgb_local.m_button: ~25 rows (approximately)
 /*!40000 ALTER TABLE `m_button` DISABLE KEYS */;
 INSERT INTO `m_button` (`id`, `scene_type`, `name`, `text`, `sub_text`, `tag_id`, `x`, `y`, `width`, `height`, `next_scene`, `action_type`, `value`, `created`, `modified`) VALUES
 	(1, 'scene_menu', 'クエスト', 'クエストを始めたりログを確認します', 'none', 'button_quest', 0, 0, 400, 30, 'quest', 'none', 'none', '2015-09-01 16:32:05', '2015-09-01 16:32:05'),
@@ -122,8 +128,8 @@ CREATE TABLE IF NOT EXISTS `m_event` (
 -- Dumping data for table lgb_local.m_event: ~6 rows (approximately)
 /*!40000 ALTER TABLE `m_event` DISABLE KEYS */;
 INSERT INTO `m_event` (`id`, `type`, `message`, `param`, `created`, `modified`) VALUES
-	(1, 0, '敵に遭遇した', 0, '2015-09-02 12:00:02', '2015-09-02 12:00:02'),
-	(2, 0, '宝箱をみつけた', 0, '2015-09-02 12:00:02', '2015-09-02 12:00:02'),
+	(1, 6, '敵に遭遇した', 0, '2015-09-02 12:00:02', '2015-09-02 12:00:02'),
+	(2, 5, '宝箱をみつけた', 0, '2015-09-02 12:00:02', '2015-09-02 12:00:02'),
 	(3, 1, '泉をみつけた', 5, '2015-09-02 12:00:02', '2015-09-02 12:00:02'),
 	(4, 2, '泉をみつけた', 5, '2015-09-02 12:00:02', '2015-09-02 12:00:02'),
 	(5, 3, '泉をみつけた', 5, '2015-09-02 12:00:02', '2015-09-02 12:00:02'),
@@ -149,7 +155,7 @@ CREATE TABLE IF NOT EXISTS `m_item` (
   KEY `idx_m_item` (`type`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Dumping data for table lgb_local.m_item: ~13 rows (approximately)
+-- Dumping data for table lgb_local.m_item: ~12 rows (approximately)
 /*!40000 ALTER TABLE `m_item` DISABLE KEYS */;
 INSERT INTO `m_item` (`id`, `type`, `rarity`, `name`, `note`, `param`, `set_item_id`, `buy_price`, `add_price`, `created`, `modified`) VALUES
 	(1001, 1, 1, 'ひのきのぼう', '初期装備はこれで', 5, 0, 100, 10, '2015-09-01 17:00:46', '2015-09-01 17:00:46'),
@@ -418,7 +424,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 -- Dumping data for table lgb_local.user: ~1 rows (approximately)
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
 INSERT INTO `user` (`id`, `name`, `password`, `status`, `money`, `created`, `modified`) VALUES
-	(1, '0', '0', 1, 1000, '2015-08-31 16:17:01', '2015-09-07 18:44:58');
+	(1, '0', '0', 1, 1000, '2015-08-31 16:17:01', '2015-09-09 18:51:16');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 
 
@@ -437,7 +443,7 @@ CREATE TABLE IF NOT EXISTS `user_item` (
   KEY `idx_user_item` (`user_id`,`item_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
--- Dumping data for table lgb_local.user_item: ~3 rows (approximately)
+-- Dumping data for table lgb_local.user_item: ~2 rows (approximately)
 /*!40000 ALTER TABLE `user_item` DISABLE KEYS */;
 INSERT INTO `user_item` (`id`, `user_id`, `item_id`, `lv`, `quantity`, `status`, `created`, `modified`) VALUES
 	(1, 1, 1001, 1, 1, 0, '2015-09-07 20:06:57', '2015-09-07 20:06:59'),
