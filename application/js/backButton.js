@@ -1,0 +1,3 @@
+
+lgb.backButton = lgb.button;
+
