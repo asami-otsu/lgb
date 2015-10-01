@@ -8,9 +8,11 @@ class Test extends LGB_Controller {
 	 *
 	 */
 	function menu() {
-		$indexData = new IndexData();
-		$data = $indexData->get_index();
+		$user_id = $this->input->get_post('user_id', TRUE);
 
+		$indexData = new IndexData();
+		$data = $indexData->get_index($user_id);
+log_message('debug', json_encode($data, true));
                 $this->output->set_output(json_encode($data));
                 $this->output->_display();
 		exit;

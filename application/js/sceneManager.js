@@ -10,7 +10,7 @@ lgb.sceneTypeList = {
  */
 lgb.sceneManager = function(){
 	// 初期のタイプ
-	this.nowType = lgb.sceneTypeList.MENU;
+	this.nowType = 'scene_' + lgb.sceneTypeList.MENU;
 	this.scene = null;
 	this.remove = false;
 	this.nonProcess = false;
@@ -18,11 +18,14 @@ lgb.sceneManager = function(){
 
 	this.init = function(){
 		this.remove = false;
+		var data = {
+			user_id: lgb.user.id
+		};
 		// サーバーからデータ取得
 		var scenes = $.ajax({
 				type: "POST",
-				url: lgb.common.api_button_url, 
-				data: null, 
+				url: lgb.common.api_test_button_url, 
+				data: data, 
 				success: null, 
 				dataType: "json",
 				async: false
@@ -74,14 +77,31 @@ lgb.sceneManager = function(){
 	};
 
 	this.createScene = function(){
-		var nowScene = eval('this.sceneList.scene_'+this.nowType);
-		this.scene = new lgb.scene(this.nowType, nowScene.sceneName, nowScene.buttons, nowScene.drawType );
+		var nowScene = eval('this.sceneList.'+this.nowType);
+		var params = {
+			type: this.nowType,
+			title: nowScene.sceneName,
+			buttons: nowScene.buttons,
+			drawType: nowScene.drawType,
+			backScene: nowScene.backScene,
+		};
+		this.scene = new lgb.scene(params);
 		this.scene.init();
+
+		this.debug_sceneType();
 		this.nonProcess = false;
 	};
 
 	this.getNowSceneType = function(){
 		return this.nowType;
+	};
+
+	this.getBackSceneType = function(){
+		return this.scene.getBackScene();
+	};
+
+	this.debug_sceneType = function(){
+		$('#sceneType').text("sceneType = "+ this.nowType);
 	};
 
 };

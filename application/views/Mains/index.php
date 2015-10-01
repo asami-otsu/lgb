@@ -3,11 +3,16 @@
 echo "Mains/index<BR>";
 echo "php ver = ".PHP_VERSION."<BR>";
 ?>
+<div id="debug">
+	でばっぐ
+	<div id='sceneType'></div>
+</div>
 
 <script type="text/javascript" >
 	onload = function(){
 		var user_id = <?php echo json_encode($data, true); ?>;
-		if( user_id typeof undefined || user_id < 1  ){
+console.log(user_id);
+		if( typeof user_id === undefined || user_id < 1  ){
 			alert('データベースに該当ユーザーデータが存在しないようです。');
 		}
 		console.log("ユーザデータ有 "+user_id);
