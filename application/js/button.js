@@ -36,8 +36,12 @@ lgb.button_init_list = {
  * @param object params
  */
 lgb.button = function(params){
-	this.position_x = params.x || 0;	// このオブジェクト自身の座標
-	this.position_y = (params.y || 0) + lgb.app.scene.getHeader().getRect().height;// 元のデータを逐一取得しているわけではないので、ボタンが自らHeader分移動する
+	this.position_x = parseInt( params.x || 0 );	// このオブジェクト自身の座標
+	if( params.y < 0 ){
+		this.position_y = 0;
+	}else{
+		this.position_y = parseInt( (params.y || 0) ) + parseInt(lgb.app.scene.getHeader().getRect().height);// 元のデータを逐一取得しているわけではないので、ボタンが自らHeader分移動する
+	}
 
 	this.title = params.title || "none title";
 	this.text = params.text || "none";
@@ -54,7 +58,7 @@ lgb.button = function(params){
 	this.ctx = null;
 	this.c_rect = null;
 
-	this.nextScene = params.nextScene;
+	this.nextScene = params.nextScene || "none";
 
 	this.actionType = params.actionType || "none";
 
@@ -116,10 +120,10 @@ lgb.button = function(params){
 	this.finish = function(){
 		$('#'+this.id).remove();
 	};
-// {{{
+
 	this.drawDisable = function(){
 	};
-// }}}
+
 	this.onClick = function(e){
 		// すでにのっている状態なので、実行
 		this.lgb_button.changeSceneAction();

@@ -63,6 +63,7 @@ lgb.getApi = function(url, params, callback){
 lgb.js_urls = [
 	'/application/js/header.js',
 	'/application/js/button.js',
+	'/application/js/backButton.js',
 	'/application/js/buttonManager.js',
 	'/application/js/scene.js',
 	'/application/js/sceneManager.js'
@@ -86,6 +87,21 @@ lgb.create_canvas = function(id, class_name, width, height, style){
 		class_ = " class="+class_name+" ";
 	}
 	$('#canvas').append('<canvas id='+id+class_+' width="'+width+'" height="'+height+'" style="'+style+'" ></canvas>');
+};
+
+lgb.user_init = function(){
+	// php側から送られてくるデータにはquest_selectのデータはない。
+	lgb.user.data.quest_select = {
+		quest_id: null,
+		step: null,
+		weapon_id: null,
+		armor_id: null,
+		item_id_1: null,
+		item_id_2: null,
+		time: null,
+		r_time: null,
+		log_id: null,
+	};
 };
 
 lgb.user = {

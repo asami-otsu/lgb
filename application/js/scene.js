@@ -18,18 +18,18 @@ lgb.sceneActionList = {
  *
  *
  */
-lgb.scene = function (nowType, nowTitle, buttons, drawType){
-	this.type = nowType;
-	this.title = nowTitle;
-	this.buttons = buttons || null;
-	this.drawType = drawType || "none";
+lgb.scene = function (params){
+	this.type = params.type;
+	this.title = params.title;
+	this.buttons = params.buttons || null;
+	this.drawType = params.drawType || "none";
+	this.backScene = params.backScene;
 
 	this.objects = [];
 
 	this.init = function(){
 		// データ取得
 		eval("this.get"+lgb.sceneActionList[this.drawType]+"Action()");
-
 
 		// 回すため、ここで突っ込む
 		this.objects[lgb.objectTypeList.HEADER] = new lgb.header(this.type, this.title);
@@ -66,6 +66,10 @@ lgb.scene = function (nowType, nowTitle, buttons, drawType){
 
 	this.getHeader = function(){
 		return this.objects[lgb.objectTypeList.HEADER];
+	};
+
+	this.getBackScene = function(){
+		return this.backScene;
 	};
 
 	/**

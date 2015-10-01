@@ -40,6 +40,7 @@ lgb.main = function(){
 		if( lgb.app == null ){
 			lgb.app = new lgb.sceneManager();
 			lgb.app.init();
+			lgb.user_init();
 		}
 
 		if( lgb.app.isRemove() == false ){
